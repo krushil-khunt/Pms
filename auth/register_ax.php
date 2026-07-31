@@ -3,7 +3,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once '../config/db.php';
-$name=filter_var($_POST['username'], FILTER_SANITIZE_SPECIAL_CHARS);
+$name=$_POST['username'];
 $email=filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $pass= md5($_POST['password']);
 $role= $_POST['user'];
