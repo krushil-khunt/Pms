@@ -1,0 +1,50 @@
+[30-Jul-2026 14:54:34 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(7): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 14:55:56 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(4): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 14:56:47 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(7): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 14:56:48 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(7): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 14:56:48 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(7): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 14:56:49 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(7): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 14:56:49 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(7): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 14:57:05 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(7): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 14:59:39 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(4): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
+[30-Jul-2026 15:05:09 Asia/kolkata] PHP Fatal error:  Uncaught Error: Class "mysqli" not found in /var/www/html/Qrolic/Pms/config/db.php:8
+Stack trace:
+#0 /var/www/html/Qrolic/Pms/auth/register_ax.php(5): require_once()
+#1 {main}
+  thrown in /var/www/html/Qrolic/Pms/config/db.php on line 8
