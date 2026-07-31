@@ -51,7 +51,7 @@ function updateCategory(id){
 
     xhttp.open("POST","updatecat.php",true);
     xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    xhttp.send("idu=" + idu+"&name="+name);
+    xhttp.send("idu="+idu+"&name="+name);
 
 }
 
