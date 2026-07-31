@@ -16,5 +16,5 @@ if($con->query($sql)){
     echo "Not register".$con->error;
 }
 
-header("Location: login.php");
+// header("Location: login.php");
 

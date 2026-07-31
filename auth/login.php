@@ -41,10 +41,10 @@
             const password = document.getElementById("password");
             const user = document.getElementById("user");
 
-            console.log(user.value);
+            // console.log(user.value);
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function(){
-                // document.getElementById("demo").innerHTML = this.responseText;
+
                 if (this.responseText.trim() == "success") {
                     window.location.href = "../dashboard.php";
                 } else {
