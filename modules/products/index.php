@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +10,11 @@
     <title>Product</title>
 </head>
 <body>
+    <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
     <div>
         <button type="button" class="btn btn-outline-danger" onclick="add()">Add Product</button>
     </div>
+    <?php } ?>
 
     <div>
         <span id="addproduct"></span>
@@ -19,8 +24,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
-
 <?php 
+
 require_once "../../config/db.php";
 
 $sql="SELECT products.id,products.product_name,products.primary_img,product_meta.size,products.status,
@@ -38,11 +43,14 @@ echo "<table>
 <th>Primary Image</th>
 <th>Height</th>
 <th>Width</th>
-<th>status</th>
-<th>Edit</th>
-<th>Delet</th>
-</tr>
-";
+<th>Status</th>";
+
+if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+    echo "<th>Edit</th>";
+    echo "<th>Delete</th>";
+}
+
+echo "</tr>";
 
 
 while($row = $result->fetch_array()) {
@@ -57,12 +65,16 @@ while($row = $result->fetch_array()) {
     echo "<td>" . $row['height'] . "</td>";
     echo "<td>" . $row['width'] . "</td>";
     echo "<td>" . $row['status'] . "</td>";
-    echo "<td><button onclick='editProduct(".$row['id'].")'>Edit</button></td>";
-    echo "<td><button onclick='deleteProduct(".$row['id'].")'>Delet</button></td>";
+    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+        echo "<td><button onclick='editProduct(".$row['id'].")'>Edit</button></td>";
+        echo "<td><button onclick='deleteProduct(".$row['id'].")'>Delet</button></td>";
+    }
     echo "</tr>";
-
-
 }
+?>
+
+
+
 
 
 

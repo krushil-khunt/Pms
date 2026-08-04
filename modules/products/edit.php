@@ -55,12 +55,12 @@ $result2=$con->query($sql2);
             </div>
             <div class="mb-3">
                 <label for="primaryimg" class="form-label">Primary Image</label>
-                <input class="form-control" type="file" id="primaryimg" name="img" value="<?php echo $row['primary_img'] ;?>">
-                <!-- <img src="../../assets/uploads/primary/. " width='200' alt='Product Image'> -->
+                <input class="form-control" type="file" id="primaryimg" name="img">
+                 <img src="../../assets/uploads/primary/<?php echo $row['primary_img']; ?>"width="100">
             </div>
             <div class="mb-3">
                 <label for="galleryimg" class="form-label">Gallery Images</label>
-                <input class="form-control" type="file" id="galleryimg" name="gallery_images[]" multiple value="<?php echo $row['gallery_img'] ;?>"> 
+                <input class="form-control" type="file" id="galleryimg" name="gallery_images[]" multiple> 
             </div>
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
@@ -92,8 +92,9 @@ $result2=$con->query($sql2);
             </div>
             <div class="mb-3">
                 <select id="Status" class="form-select">
-                    <!-- <option>Status</option> -->
-                        <option value="<?php echo $row['id'] ?>"><?php echo $row['status'] ?></option>
+                    <option>Status</option>
+                        <option value="active">active</option>
+                        <option value="Inactive">Inactive</option>
                 </select>
             </div>
             <input type="hidden" id="id" value="<?php echo $_POST['id']; ?>">

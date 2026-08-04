@@ -119,19 +119,6 @@ function updateproduct(id){
 
     const galleryimg =document.getElementById("galleryimg").files;
 
-    // console.log(subcategory);
-    // console.log(name);
-    // console.log(price);
-    // console.log(color);
-    // console.log(size);
-    // console.log(height);
-    // console.log(width);
-    // console.log(weight);
-    // console.log(status);
-    // console.log(quantity);
-    // console.log(primaryimg);
-    // console.log(galleryimg);
-
     const data = new FormData();
 
     data.append("select_sub", subcategory);

@@ -131,24 +131,11 @@ if($con->query($sql)){
             ('$product_id','$size','$height','$width','$imgnames','$color','$weight','$price','$quantity')";
 
     if($con->query($sql2)){
-     
-        $productmeta_id = $con->insert_id;
-
-        $sql3 = "UPDATE products
-                 SET productmeta_id = '$productmeta_id'
-                 WHERE id = '$product_id'";
-
-        if($con->query($sql3)){
-
-            echo "Product added successfully";
-
-        }else{
-
-            echo "Product Meta ID Update Error: " . $con->error;
-        }
+        echo "Product added successfully";
     }else{
-        echo "Product Meta Error: " . $con->error;
+       echo "Product Meta ID Update Error: " . $con->error;
     }
+
 }else{
     echo "Product Error: " . $con->error;
 }

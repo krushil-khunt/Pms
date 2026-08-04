@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,9 +11,12 @@
     <title>Subcategories</title>
 </head>
 <body>
-    <div>
-        <button type="button" class="btn btn-outline-secondary" onclick="addsub()">Add Sub Categorie</button>
-    </div>
+    <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
+        <div>
+            <button type="button" class="btn btn-outline-secondary" onclick="addsub()">Add Sub Categorie</button>
+        </div>
+    <?php }?>
+   
     <div>
         <span id="addsubcate"></span>
     </div>
@@ -17,7 +24,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
-
 <?php 
 
 require_once "../../config/db.php";
@@ -32,19 +38,26 @@ echo "<table>
 <tr>
 <th>Id</th>
 <th>Sub_catName</th>
-<th>category</th>
-<th>Edit</th>
-<th>Delete</th>
-</tr>";
+<th>category</th>";
+
+if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+    echo "<th>Edit</th>";
+    echo "<th>Delete</th>";
+}
+
+echo "</tr>";
 
 while($row=$result->fetch_array()){
     echo "<tr>";
     echo "<td>".$row['id']."</td>";
     echo "<td>".$row['sub_cate_name']."</td>";
     echo "<td>".$row['cate_name']."</td>";
-    echo "<td><button onclick='editSubCategory(".$row['id'].")'>Edit</button></td>";
-    echo "<td><button onclick='deleteSubCategory(".$row['id'].")'>Delet</button></td>";
+    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+        echo "<td><button onclick='editSubCategory(".$row['id'].")'>Edit</button></td>";
+        echo "<td><button onclick='deleteSubCategory(".$row['id'].")'>Delet</button></td>";
+    }
     echo "</tr>";
 }
 
 echo "</table>";
+?>
