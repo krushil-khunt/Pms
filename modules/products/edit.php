@@ -37,7 +37,7 @@ $result2=$con->query($sql2);
 </head>
 <body>
     <div class="row mt-3">
-        <h1 class="col-6 offset-3">Add Product</h1>
+        <h1 class="col-6 offset-3">Update Product</h1>
         <div class="col-3 offset-4">
             <div class="mb-3">
                 
@@ -92,9 +92,15 @@ $result2=$con->query($sql2);
             </div>
             <div class="mb-3">
                 <select id="Status" class="form-select">
-                    <option>Status</option>
-                        <option value="active">active</option>
-                        <option value="Inactive">Inactive</option>
+                    <option value="active"<?php if($row['status'] == "active") echo "selected"; ?>>
+                        Active
+                    </option>
+
+                    <option value="Inactive"
+                        <?php if($row['status'] == "Inactive") echo "selected"; ?>>
+                        Inactive
+                    </option>
+
                 </select>
             </div>
             <input type="hidden" id="id" value="<?php echo $_POST['id']; ?>">
@@ -111,10 +117,3 @@ $result2=$con->query($sql2);
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
-
-
-

@@ -115,6 +115,9 @@ function updateproduct(id){
     const weight = document.getElementById("weight").value;
     const quantity = document.getElementById("quantity").value;
 
+    // console.log(subcategory);
+    // console.log(status);
+
     const primaryimg =document.getElementById("primaryimg").files[0];
 
     const galleryimg =document.getElementById("galleryimg").files;
