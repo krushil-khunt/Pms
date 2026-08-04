@@ -95,6 +95,7 @@ if(!move_uploaded_file($primaryTmp, $primaryPath)){
     die("Primary image upload failed");
 
 }
+
 $galleryNames = [];
 
 if(isset($_FILES['gallery_images'])){
@@ -102,14 +103,14 @@ if(isset($_FILES['gallery_images'])){
     $galleryImages =$_FILES['gallery_images']['name'];
     $galleryTmp =$_FILES['gallery_images']['tmp_name'];
 
-    foreach($galleryImages as $key => $galleryImage){
+    foreach($galleryImages as $key => $value){
         $tmpName = $galleryTmp[$key];
-        $galleryPath = __DIR__ . "/../../assets/uploads/gallery/" . $galleryImage;
+        $galleryPath = __DIR__ . "/../../assets/uploads/gallery/" . $value;
 
         if(move_uploaded_file($tmpName, $galleryPath)){
-            $galleryNames[] = $galleryImage;
+            $galleryNames[] = $value;
         }else{
-            die("Gallery image upload failed: " . $galleryImage);
+            die("Gallery image upload failed: " . $value);
         }
     }
 }

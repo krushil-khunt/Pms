@@ -23,7 +23,7 @@
 <?php 
 require_once "../../config/db.php";
 
-$sql="SELECT products.product_name,products.primary_img,product_meta.size,products.status,
+$sql="SELECT products.id,products.product_name,products.primary_img,product_meta.size,products.status,
 product_meta.height,product_meta.width,product_meta.gallery_img
 FROM products
 INNER JOIN
@@ -39,6 +39,8 @@ echo "<table>
 <th>Height</th>
 <th>Width</th>
 <th>status</th>
+<th>Edit</th>
+<th>Delet</th>
 </tr>
 ";
 
@@ -46,10 +48,17 @@ echo "<table>
 while($row = $result->fetch_array()) {
   echo "<tr>";
     echo "<td>" . $row['product_name'] . "</td>";
-    echo "<td><img src='../../assets/uploads/primary/" . $row['primary_img'] . "'width='200'alt='Product Image'></td>";
+    echo "<td>
+        <a href='product_view.php?id=" . $row['id'] . "'>
+            <img src='../../assets/uploads/primary/" . $row['primary_img'] . "' width='200' alt='Product Image'>
+        </a>
+      </td>";
+
     echo "<td>" . $row['height'] . "</td>";
     echo "<td>" . $row['width'] . "</td>";
     echo "<td>" . $row['status'] . "</td>";
+    echo "<td><button onclick='editCategory(".$row['id'].")'>Edit</button></td>";
+    echo "<td><button onclick='deleteCategory(".$row['id'].")'>Delet</button></td>";
     echo "</tr>";
 
     // $galleryImages = explode(',', $row['gallery_img']);

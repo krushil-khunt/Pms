@@ -61,15 +61,12 @@ function addproduct(){
     data.append("status", status);
     data.append("weight", weight);
     data.append("quantity", quantity);
-
-    // Primary
     data.append("img", primaryimg);
 
 
     for(let i = 0; i < galleryimg.length; i++){
         data.append("gallery_images[]", galleryimg[i]);
     }
-
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function(){
@@ -85,4 +82,8 @@ function addproduct(){
     xhttp.open("POST", "add.php", true);
 
     xhttp.send(data);
+}
+
+function viewProduct(id){
+    console.log("btn clik");
 }
