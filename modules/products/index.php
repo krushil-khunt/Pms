@@ -57,16 +57,11 @@ while($row = $result->fetch_array()) {
     echo "<td>" . $row['height'] . "</td>";
     echo "<td>" . $row['width'] . "</td>";
     echo "<td>" . $row['status'] . "</td>";
-    echo "<td><button onclick='editCategory(".$row['id'].")'>Edit</button></td>";
-    echo "<td><button onclick='deleteCategory(".$row['id'].")'>Delet</button></td>";
+    echo "<td><button onclick='editProduct(".$row['id'].")'>Edit</button></td>";
+    echo "<td><button onclick='deleteProduct(".$row['id'].")'>Delet</button></td>";
     echo "</tr>";
 
-    // $galleryImages = explode(',', $row['gallery_img']);
-    // foreach ($galleryImages as $image) {
-    //     echo "<img src='../../assets/uploads/gallery/" . trim($image) . "'width='100'alt='Gallery Image'>";
-    // }
-    //     echo "</div>";
-    //   echo "</div>";
+
 }
 
 

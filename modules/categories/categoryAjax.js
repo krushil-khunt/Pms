@@ -42,6 +42,7 @@ function editCategory(id){
 function updateCategory(id){
     const idu = document.getElementById("id").value;
     const name = document.getElementById("catname").value;
+    
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function()

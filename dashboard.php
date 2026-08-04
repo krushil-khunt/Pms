@@ -21,7 +21,6 @@ if(isset($_SESSION['id'])){
         <a href="modules/sub_categories/index.php">Sub_Categories</a><br><br>
         <a href="modules/products/index.php">Product</a><br><br>
         <a href="auth/logout.php">Logout</a>
-        
     <?php } ?>
 </body>
 </html> 

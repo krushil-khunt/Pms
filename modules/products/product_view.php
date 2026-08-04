@@ -45,8 +45,6 @@ while ($row=$result->fetch_array()){
     echo "<td>" . $row['color'] . "</td>";
     echo "<td>" . $row['weight'] . "</td>";
 
-   
-
     $galleryImages = explode(',', $row['gallery_img']);
     foreach ($galleryImages as $image) {
         echo "<th>";

@@ -11,7 +11,7 @@ WHERE sub_categories.id=$subid";
 
 $result=$con->query($sql);
 
-$row=$result->fetch_assoc();
+// $row=$result->fetch_assoc();
 
 ?>
 <!DOCTYPE html>
@@ -28,7 +28,9 @@ $row=$result->fetch_assoc();
         <div class="col-6 offset-3">
             <div class="mb-3">
                 <select id="seletsubcat" class="form-select">
+                        <?php while($row = $result->fetch_assoc()) {?>
                         <option value="<?php echo $row['id'] ?>"><?php echo $row['cate_name'] ?> </option>
+                        <?php } ?>
                 </select>
             </div>
             <input type="hidden" name="subcatid" id="subcatid" class="form-control" value="<?php echo $row['id']; ?>">
