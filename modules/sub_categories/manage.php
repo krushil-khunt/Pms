@@ -5,8 +5,6 @@ $sql = "SELECT * FROM categories";
 
 $result = $con->query($sql);
 
-$row = $result->fetch_array();
-
 // while($row = $result->fetch_assoc()){
 //     echo $row['id']." ".$row['cate_name'];
 // }

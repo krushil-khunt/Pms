@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if(isset($_SESSION['id'])){
     echo "<h1> welcome ". $_SESSION['name']."</h1>";
     echo $_SESSION['email']."<br>";
@@ -17,11 +16,13 @@ if(isset($_SESSION['id'])){
     <title>Document</title>
 </head>
 <body>
-    <!-- <a href="auth/logout.php">Logout</a> -->
     <?php if(isset($_SESSION['id'])){ ?>
-
+        <a href="modules/categories/index.php">Categories</a><br><br>
+        <a href="modules/sub_categories/index.php">Sub_Categories</a><br><br>
+        <a href="modules/products/index.php">Product</a><br><br>
         <a href="auth/logout.php">Logout</a>
         
     <?php } ?>
 </body>
-</html>
+</html> 
+
