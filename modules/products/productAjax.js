@@ -163,3 +163,17 @@ function updateproduct(id){
 
     xhttp.send(data);
 }
+
+function deleteProduct(id){
+const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function()
+    {
+        document.body.innerHTML = this.responseText;
+    }
+
+    xhttp.open("POST","delete.php",true);
+    xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xhttp.send("id=" + id);
+
+}
