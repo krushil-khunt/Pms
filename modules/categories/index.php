@@ -1,6 +1,7 @@
 <?php 
-session_start();
+    session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,13 @@ session_start();
     <title>categories</title>
 </head>
 <body>
+   
      <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
+      <div class="col-2">
+        <div class="mb-3">
+            <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query(this.value)" >
+        </div>
+      </div>
         <div>
             <button type="button" class="btn btn-outline-danger" onclick="add()">Add Categorie</button>
         </div>
@@ -24,41 +31,4 @@ session_start();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>
-<?php  
-
-
-require_once "../../config/db.php";
-
-$sql="SELECT * FROM categories";
-
-$result=$con->query($sql);
-
-
-echo "<table>
-<tr>
-<th>id</th>
-<th>category</th>";
-
-if(isset($_SESSION['role']) && $_SESSION['role']==="admin"){
-    echo "<th>Edit</th>";
-    echo "<th>Delete</th>";
-
-}
-echo "</tr>";
-
-while($row=$result->fetch_array()){
-    echo "<tr>";
-    echo "<td>" . $row['id'] . "</td>";
-    echo "<td>" . $row['cate_name'] . "</td>";
-    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
-        echo "<td><button onclick='editCategory(".$row['id'].")'>Edit</button></td>";
-        echo "<td><button onclick='deleteCategory(".$row['id'].")'>Delet</button></td>";
-    }
-    echo "</tr>";
-}
-echo "</table>";
-?>
-
-
-
 

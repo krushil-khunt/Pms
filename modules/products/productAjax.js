@@ -15,20 +15,39 @@ function add() {
     xhttp.send();
 }
 
-const selcecat_id=document.getElementById('selectcat');
-selcecat_id.addEventListener('change', function() {
-    let categoryId = this.value;
-    console.log(categoryId);
+// const selcecat_id=document.getElementById('selectcat');
+// selcecat_id.addEventListener('change', function() {
+//     let categoryId = this.value;
+//     console.log(categoryId);
 
-    const xhttp = new XMLHttpRequest();
+//     const xhttp = new XMLHttpRequest();
 
-    xhttp.onload = function(){
-        document.getElementById("selectsub").innerHTML = this.responseText;
-    };
-    xhttp.open("POST", "create-product-ajax.php", true);
-    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    xhttp.send("category=" + categoryId);
-});
+//     xhttp.onload = function(){
+//         document.getElementById("selectsub").innerHTML = this.responseText;
+//     };
+//     xhttp.open("POST", "create-product-ajax.php", true);
+//     xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//     xhttp.send("category=" + categoryId);
+// });
+
+const selcecat_id = document.getElementById("selectcat");
+
+if (selcecat_id) {
+    selcecat_id.addEventListener("change", function () {
+
+        let categoryId = this.value;
+
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.onload = function () {
+            document.getElementById("selectsub").innerHTML = this.responseText;
+        };
+
+        xhttp.open("POST", "create-product-ajax.php", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("category=" + categoryId);
+    });
+}
 
 
 function addproduct(){
@@ -167,3 +186,18 @@ const xhttp = new XMLHttpRequest();
     xhttp.send("id=" + id);
 
 }
+
+function query(str){
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            document.getElementById("addproduct").innerHTML = this.responseText;
+        }
+    };
+
+    xhttp.open("GET", "display.php?q=" + encodeURIComponent(str), true);
+    xhttp.send();
+}
+query("");

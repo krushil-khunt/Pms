@@ -68,3 +68,21 @@ function deleteCategory(id){
     xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
     xhttp.send("id=" + id);
 }
+
+function query(str){
+
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function(){
+        if(this.readyState == 4 && this.status == 200){
+            document.getElementById("addcate").innerHTML = this.responseText;
+        }
+    };
+
+    xhttp.open("GET", "display.php?q=" + encodeURIComponent(str), true);
+    xhttp.send();
+}
+query("");
+
+
+
