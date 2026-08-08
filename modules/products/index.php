@@ -20,6 +20,7 @@ session_start();
                 </select>
                 <select id="order" class="form-select">
                     <option>Order</option>
+                    <option value="new" selected>Newest First</option>
                     <option value="A-Z">A-Z</option>
                     <option value="Z-A">Z-A</option>
                     <option value="hig-low">Price (High to Low)</option>

@@ -59,6 +59,8 @@ if($order=="A-Z"){
 
 }elseif($order=="low-high"){
     $sql.= " ORDER BY products.product_name ASC";
+}elseif($order=="new"){
+    $sql.= " ORDER BY products.created_at DESC";
 }
 
 
