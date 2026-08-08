@@ -7,6 +7,9 @@ $q = $_GET['q'] ?? '';
 
 $price=$_GET['price'] ?? '';
 
+$order=$_GET['order'] ?? '';
+// echo $order;
+
 // echo $price;
 
 // echo $q;
@@ -42,6 +45,22 @@ if($price=="1"){
 }elseif($price=="2"){
     $sql .= " AND ( product_meta.price BETWEEN 10000 AND 100000)";
 }
+
+if($order=="A-Z"){
+
+    $sql.= " ORDER BY products.product_name ASC";
+
+}elseif($order=="Z-A"){
+
+    $sql.= " ORDER BY products.product_name DESC";
+
+}elseif($order=="hig-low"){
+    $sql.= " ORDER BY product_meta.price DESC";
+
+}elseif($order=="low-high"){
+    $sql.= " ORDER BY products.product_name ASC";
+}
+
 
 $result=$con->query($sql);
 

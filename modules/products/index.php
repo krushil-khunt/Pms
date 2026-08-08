@@ -18,6 +18,13 @@ session_start();
                     <option value="1">1000-10,000</option>
                     <option value="2">10,000-100,000</option>
                 </select>
+                <select id="order" class="form-select">
+                    <option>Order</option>
+                    <option value="A-Z">A-Z</option>
+                    <option value="Z-A">Z-A</option>
+                    <option value="hig-low">Price (High to Low)</option>
+                    <option value="low-high">Price (Low to High )</option>
+                </select>
         </div>
       </div>
     <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>

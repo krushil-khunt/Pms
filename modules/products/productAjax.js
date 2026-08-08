@@ -191,6 +191,7 @@ function query(){
 
     const q = document.getElementById("categorie_name").value;
     const price = document.getElementById("price").value;
+    const order = document.getElementById("order").value;
 
     const xhttp = new XMLHttpRequest();
 
@@ -200,7 +201,7 @@ function query(){
         }
     };
 
-    xhttp.open("GET", "display.php?q=" + encodeURIComponent(q) + "&price=" + price,true);
+    xhttp.open("GET", "display.php?q=" + encodeURIComponent(q) + "&price=" + price+"&order="+order,true);
     xhttp.send();
 }
 query();
@@ -209,4 +210,10 @@ const price=document.getElementById("price");
 
 price.addEventListener("change",function(){
   query();
+})
+
+
+const order=document.getElementById("order");
+order.addEventListener("change",function(){
+    query();
 })
