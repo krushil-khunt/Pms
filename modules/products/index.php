@@ -12,7 +12,12 @@ session_start();
 <body>
      <div class="col-2">
         <div class="mb-3">
-            <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query(this.value)" >
+            <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query()" >
+                <select id="price" class="form-select">
+                    <option>All</option>
+                    <option value="1">1000-10,000</option>
+                    <option value="2">10,000-100,000</option>
+                </select>
         </div>
       </div>
     <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>

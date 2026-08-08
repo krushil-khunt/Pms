@@ -187,7 +187,10 @@ const xhttp = new XMLHttpRequest();
 
 }
 
-function query(str){
+function query(){
+
+    const q = document.getElementById("categorie_name").value;
+    const price = document.getElementById("price").value;
 
     const xhttp = new XMLHttpRequest();
 
@@ -197,7 +200,13 @@ function query(str){
         }
     };
 
-    xhttp.open("GET", "display.php?q=" + encodeURIComponent(str), true);
+    xhttp.open("GET", "display.php?q=" + encodeURIComponent(q) + "&price=" + price,true);
     xhttp.send();
 }
-query("");
+query();
+
+const price=document.getElementById("price");
+
+price.addEventListener("change",function(){
+  query();
+})

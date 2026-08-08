@@ -69,7 +69,6 @@ function deleteSubCategory(id){
     xhttp.send("id=" + id);
 
 }
-
 function query(str){
 
     const xhttp = new XMLHttpRequest();

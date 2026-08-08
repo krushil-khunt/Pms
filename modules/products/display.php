@@ -5,31 +5,42 @@ require_once "../../config/db.php";
 
 $q = $_GET['q'] ?? '';
 
+$price=$_GET['price'] ?? '';
+
+// echo $price;
+
 // echo $q;
 
-if($q == ''){
-    $sql="SELECT products.id,products.product_name,products.primary_img,product_meta.size,products.status,
-    product_meta.height,product_meta.width,product_meta.gallery_img
-    FROM products
-    INNER JOIN product_meta
-    ON products.id=product_meta.product_id";
-}else{
-    $sql = "SELECT
-            products.id,products.product_name,products.primary_img,products.status,product_meta.size,
-            product_meta.height,product_meta.width,product_meta.gallery_img
-            FROM products
-            INNER JOIN product_meta
+$sql = "SELECT products.id,products.product_name,products.primary_img,products.status,product_meta.size,
+            product_meta.height,product_meta.width,product_meta.gallery_img,product_meta.price
+        FROM products
+        INNER JOIN product_meta
             ON products.id = product_meta.product_id
-            INNER JOIN categories
+        INNER JOIN categories
             ON products.categorie_id = categories.id
-            INNER JOIN sub_categories
+        INNER JOIN sub_categories
             ON products.sub_categorie_id = sub_categories.id
-            INNER JOIN users
+        INNER JOIN users
             ON products.user_id = users.id
-            WHERE products.product_name LIKE '%$q%'
-            OR categories.cate_name LIKE '%$q%'
-            OR sub_categories.sub_cate_name LIKE '%$q%'
-            OR users.name LIKE '%$q%'";
+        WHERE 1=1";
+
+if($q == ''){
+    $sql;    
+}else{
+
+    $sql .= " AND (
+        products.product_name LIKE '%$q%'
+        OR categories.cate_name LIKE '%$q%'
+        OR sub_categories.sub_cate_name LIKE '%$q%'
+        OR users.name LIKE '%$q%'
+    )";
+
+}
+
+if($price=="1"){
+    $sql .= " AND ( product_meta.price BETWEEN 1000 AND 10000)";
+}elseif($price=="2"){
+    $sql .= " AND ( product_meta.price BETWEEN 10000 AND 100000)";
 }
 
 $result=$con->query($sql);
@@ -41,7 +52,8 @@ echo "<table>
 <th>Primary Image</th>
 <th>Height</th>
 <th>Width</th>
-<th>Status</th>";
+<th>Status</th>
+<th>Price</th>";
 
 if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
     echo "<th>Edit</th>";
@@ -63,6 +75,7 @@ while($row = $result->fetch_array()) {
     echo "<td>" . $row['height'] . "</td>";
     echo "<td>" . $row['width'] . "</td>";
     echo "<td>" . $row['status'] . "</td>";
+    echo "<td>" . $row['price'] . "</td>";
     if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
         echo "<td><button onclick='editProduct(".$row['id'].")'>Edit</button></td>";
         echo "<td><button onclick='deleteProduct(".$row['id'].")'>Delet</button></td>";

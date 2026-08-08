@@ -7,7 +7,7 @@ $q = $_GET['q'] ?? '';
 // echo $q;
 
 if($q == ''){
-    $sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name FROM categories
+    $sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name, FROM categories
     INNER JOIN sub_categories
     ON categories.id=sub_categories.categorie_id";
 }else{
