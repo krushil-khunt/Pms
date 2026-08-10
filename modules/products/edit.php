@@ -33,7 +33,6 @@ $result2=$con->query($sql2);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <title>Add product</title>
 </head>
 <body>
     <div class="row mt-3">
@@ -56,7 +55,7 @@ $result2=$con->query($sql2);
             <div class="mb-3">
                 <label for="primaryimg" class="form-label">Primary Image</label>
                 <input class="form-control" type="file" id="primaryimg" name="img">
-                 <img src="../../assets/uploads/primary/<?php echo $row['primary_img']; ?>"width="100">
+                  <img src="../../assets/uploads/primary/<?php echo $row['primary_img']; ?>"width="100">
             </div>
             <div class="mb-3">
                 <label for="galleryimg" class="form-label">Gallery Images</label>

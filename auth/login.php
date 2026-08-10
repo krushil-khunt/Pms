@@ -26,6 +26,9 @@
                 </select>
             </div>
             <div>
+                <label><input type="checkbox" name="remember" id="remember">Remember Me</label>
+            </div>
+            <div>
                 <button type="button" class="btn btn-primary" onclick="clikck()">Login</button>
             </div>
                 <a href="register.php">New user</a>
@@ -40,6 +43,7 @@
             const email = document.getElementById("email");
             const password = document.getElementById("password");
             const user = document.getElementById("user");
+            const rem=document.getElementById("remember");
 
             // console.log(user.value);
             const xhttp = new XMLHttpRequest();
@@ -55,7 +59,9 @@
             xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xhttp.send("email=" + email.value +
                 "&password=" + password.value +
-                "&user=" + user.value);
+                "&user=" + user.value +
+                "&rem=" + rem.value
+            );
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>

@@ -8,23 +8,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Qrolic/Pms/assets/css/style.css">
     <title>categories</title>
 </head>
 <body>
+    <?php require_once '../../includes/sidebar.php'; ?>
+    <div class="main-content">
    
-     <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
-      <div class="col-2">
-        <div class="mb-3">
-            <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query(this.value)" >
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
+        <div class="col-2">
+            <div class="mb-3">
+                <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query(this.value)" >
+            </div>
         </div>
-      </div>
-        <div>
-            <button type="button" class="btn btn-outline-danger" onclick="add()">Add Categorie</button>
-        </div>
-    <?php }?>
+            <div>
+                <button type="button" class="btn btn-outline-danger" onclick="add()">Add Categorie</button>
+            </div>
+        <?php }?>
 
-    <div>
-        <span id="addcate"></span>
+        <div>
+            <span id="addcate"></span>
+        </div>
     </div>
 
     <script src="categoryAjax.js"></script>

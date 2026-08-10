@@ -1,34 +1,47 @@
 <?php
 session_start();
 
+require_once "config/db.php";
+// require_once "includes/sidebar.php";
 
+// $sql="SELECT COUNT(*) FROM products";
+$sql="SELECT COUNT(*) FROM products WHERE status='active'";
+$sqlInactive="SELECT COUNT(*) FROM products WHERE status='Inactive'";
+$user="SELECT COUNT(*) FROM users";
+
+$result=$con->query($sql);
+$resultInactive=$con->query($sqlInactive);
+$userdata=$con->query($user)
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-    <div class="sidbar">
-        <?php 
-            if(isset($_SESSION['id'])){
-                echo "<h1> welcome ". $_SESSION['name']."</h1>";
-                echo $_SESSION['email']."<br>";
-                echo $_SESSION['role']."<br>";
-            }
-        
-        if(isset($_SESSION['id'])){ ?>
-        <a href="modules/categories/index.php">Categories</a><br><br>
-        <a href="modules/sub_categories/index.php">Sub_Categories</a><br><br>
-        <a href="modules/products/index.php">Product</a><br><br>
-        <a href="auth/logout.php">Logout</a>
-    <?php } ?>
-    </div>
-    
-</body>
-</html> 
 
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <title>Dashboard</title>
+</head>
+
+<body>
+
+    <?php include "includes/sidebar.php"; ?>
+
+    <div class="main-content">
+
+        <h1>Dashboard</h1>
+
+        <?php
+        echo "Active Product=" . implode($row1 = $result->fetch_row()) . "<br>";
+        echo "Inactive Product=" . implode($row2 = $resultInactive->fetch_row()) . "<br>";
+        echo "User=" . implode($row3 = $userdata->fetch_row()) . "<br>";
+        ?>
+
+    </div>
+
+</body>
+
+</html>

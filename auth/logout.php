@@ -1,4 +1,5 @@
 <?php
+setcookie("email", "", time() - 3600, "/");
 
 session_start();
 session_unset();
