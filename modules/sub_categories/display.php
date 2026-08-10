@@ -7,7 +7,7 @@ $q = $_GET['q'] ?? '';
 // echo $q;
 
 if($q == ''){
-    $sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name, FROM categories
+    $sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name FROM categories
     INNER JOIN sub_categories
     ON categories.id=sub_categories.categorie_id";
 }else{
@@ -39,7 +39,7 @@ while($row=$result->fetch_array()){
     echo "<td>".$row['cate_name']."</td>";
     if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
         echo "<td><button onclick='editSubCategory(".$row['id'].")'>Edit</button></td>";
-        echo "<td><button onclick='deleteSubCategory(".$row['id'].")'>Delet</button></td>";
+        echo "<td><button onclick='deleteSubCategory(".$row['id'].")'>Delete</button></td>";
     }
     echo "</tr>";
 }

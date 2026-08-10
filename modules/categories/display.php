@@ -33,7 +33,7 @@ echo "<table>
         echo "<td>" . $row['cate_name'] . "</td>";
         if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
             echo "<td><button onclick='editCategory(".$row['id'].")'>Edit</button></td>";
-            echo "<td><button onclick='deleteCategory(".$row['id'].")'>Delet</button></td>";
+            echo "<td><button onclick='deleteCategory(".$row['id'].")'>Delete</button></td>";
         }
         echo "</tr>";
     }
