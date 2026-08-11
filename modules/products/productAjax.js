@@ -217,3 +217,51 @@ const order=document.getElementById("order");
 order.addEventListener("change",function(){
     query();
 })
+
+
+let selectproduct=[];
+
+function productSelect(productId,checked) {
+    if(checked){
+        selectproduct.push(productId);
+    }else{
+        selectproduct = selectproduct.filter(function(id) {
+            return id != productId;
+        });
+    }
+
+    console.log(selectproduct);
+}
+
+function deleteSelectedProducts() {
+    const xhttp = new XMLHttpRequest();
+
+    xhttp.onload = function() {
+        document.body.innerHTML = this.responseText;
+    };
+    
+    xhttp.open("POST", "delete.php", true);
+    xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+    xhttp.send("product_ids=" + selectproduct.join(","));
+}
+
+// function deleteSelectedProducts() {
+
+//     if (selectproduct.length === 0) {
+//         alert("Please select product");
+//         return;
+//     }
+//     const xhttp = new XMLHttpRequest();
+
+//     xhttp.onload = function() {
+//         console.log(this.responseText);
+//         if(this.status === 200) {
+//             alert("Product deleted successfully");
+//             selectproduct = [];
+//             query();
+//         }
+//     };
+//     xhttp.open("POST", "delete.php", true);
+//     xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+//     xhttp.send("product_ids=" + selectproduct.join(","));
+// }

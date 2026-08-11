@@ -67,25 +67,28 @@ if($order=="A-Z"){
 $result=$con->query($sql);
 
 
-echo "<table>
-<tr>
-<th>Product Name</th>
-<th>Primary Image</th>
-<th>Height</th>
-<th>Width</th>
-<th>Status</th>
-<th>Price</th>";
+// echo "<table>
+// <tr>
+// <th>Product Name</th>
+// <th>Primary Image</th>
+// <th>Height</th>
+// <th>Width</th>
+// <th>Status</th>
+// <th>Price</th>";
 
-if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
-    echo "<th>Edit</th>";
-    echo "<th>Delete</th>";
-}
+// if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+//     echo "<th>Edit</th>";
+//     echo "<th>Delete</th>";
+// }
 
-echo "</tr>";
+// echo "</tr>";
 
 
 while($row = $result->fetch_array()) {
   echo "<tr>";
+    echo "<td>
+        <input type='checkbox' id='checkbox_" . $row['id'] . "' name='product_checkbox[]' value='" . $row['id'] . "' onchange='productSelect(" . $row['id'] . ", this.checked)'>
+    </td>";
     echo "<td>" . $row['product_name'] . "</td>";
     echo "<td>
         <a href='product_view.php?id=" . $row['id'] . "'>

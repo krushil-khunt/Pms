@@ -7,6 +7,7 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Qrolic/Pms/assets/css/style.css">
 </head>
 <body>
      <div class="col-2">
@@ -33,10 +34,41 @@ session_start();
     </div>
     <?php } ?>
 
+   <table  class="table">
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>Product Name</th>
+            <th>Primary Image</th>
+            <th>Height</th>
+            <th>Width</th>
+            <th>Status</th>
+            <th>Price</th>
 
-    <div>
-        <span id="addproduct"></span>
-    </div>
+            <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
+                <th>Edit</th>
+                <th>Delete</th>
+            <?php } ?>
+
+        </tr>
+    </thead>
+
+    <tbody id="addproduct">
+        
+            <td><input type="checkbox" id="product" name="product"></td>
+        
+    </tbody>
+
+    <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
+
+    <button
+        type="button"
+        class="btn btn-danger"
+        onclick="deleteSelectedProducts()">
+        Delete Selected
+    </button>
+
+    <?php } ?>
 
     <script src="productAjax.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
