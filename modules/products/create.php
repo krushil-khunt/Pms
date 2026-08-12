@@ -6,6 +6,11 @@ session_start();
 // }
 require_once "../../config/db.php";
 
+
+require_once "../../includes/auth_check.php";
+
+requireAdmin();
+
 $sql="SELECT * FROM categories";
 
 $result=$con->query($sql);

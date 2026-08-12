@@ -27,10 +27,18 @@ if($result->num_rows > 0){
         $_SESSION['role'] = $row['role'];
 
         // header("Location: ../dashboard.php");
+
         if(isset($_POST['rem'])){
             setcookie("email", $email, time() + (30 * 24 * 60 * 60), "/");
         }
-        echo "success";
+
+        if($_SESSION['role']==='admin'){
+            echo "admin";
+        }else{
+            echo "user";
+        }
+        
+        
 
     }else{
         echo "Wrong Password";

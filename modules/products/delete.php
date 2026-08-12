@@ -4,6 +4,10 @@ ini_set('display_errors', 1);
 
 require_once "../../config/db.php";
 
+require_once "../../includes/auth_check.php";
+
+requireAdmin();
+
 if(isset($_POST['id'])){
 
     $id = (int)$_POST['id'];

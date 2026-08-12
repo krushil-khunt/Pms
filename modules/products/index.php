@@ -1,5 +1,9 @@
 <?php
 session_start();
+
+require_once "../../includes/auth_check.php";
+
+requireLogin();
 ?>
 <!DOCTYPE html>
 <html lang="en">

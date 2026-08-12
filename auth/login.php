@@ -49,10 +49,13 @@
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function(){
 
-                if (this.responseText.trim() == "success") {
+                if (this.responseText.trim() == "admin") {
                     window.location.href = "../dashboard.php";
-                } else {
-                    document.getElementById("demo").innerHTML = this.responseText;
+                }  else if (this.responseText.trim() == "user") {
+                    window.location.href = "../modules/products/index.php";
+                } 
+                else {
+                    document.getElementById("demo").innerHTML = response;
                 }
             }
             xhttp.open("POST","login_ax.php",true);
@@ -60,7 +63,7 @@
             xhttp.send("email=" + email.value +
                 "&password=" + password.value +
                 "&user=" + user.value +
-                "&rem=" + rem.value
+                "&rem=" + rem.checked
             );
         }
     </script>
