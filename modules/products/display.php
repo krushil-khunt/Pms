@@ -3,6 +3,7 @@ session_start();
 
 require_once "../../config/db.php";
 
+
 $q = $_GET['q'] ?? '';
 
 $price=$_GET['price'] ?? '';
@@ -23,7 +24,7 @@ $offset = ($page - 1) * $limit;
 // echo $q;
 
 $sql = "SELECT products.id,products.product_name,products.primary_img,products.status,product_meta.size,
-            product_meta.height,product_meta.width,product_meta.gallery_img,product_meta.price
+            product_meta.height,product_meta.width,product_meta.gallery_img,product_meta.price,users.name
         FROM products
         INNER JOIN product_meta
             ON products.id = product_meta.product_id
@@ -84,23 +85,6 @@ $sql .= " LIMIT $limit OFFSET $offset";
 $result=$con->query($sql);
 
 
-// echo "<table>
-// <tr>
-// <th>Product Name</th>
-// <th>Primary Image</th>
-// <th>Height</th>
-// <th>Width</th>
-// <th>Status</th>
-// <th>Price</th>";
-
-// if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
-//     echo "<th>Edit</th>";
-//     echo "<th>Delete</th>";
-// }
-
-// echo "</tr>";
-
-
 while($row = $result->fetch_array()) {
   echo "<tr>";
     echo "<td>
@@ -117,6 +101,7 @@ while($row = $result->fetch_array()) {
     echo "<td>" . $row['width'] . "</td>";
     echo "<td>" . $row['status'] . "</td>";
     echo "<td>" . $row['price'] . "</td>";
+    echo "<td>" . $row['name'] . "</td>";
     if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
         echo "<td><button onclick='editProduct(".$row['id'].")'>Edit</button></td>";
         echo "<td><button onclick='deleteProduct(".$row['id'].")'>Delet</button></td>";

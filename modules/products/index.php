@@ -50,6 +50,7 @@ requireLogin();
                 <th>Width</th>
                 <th>Status</th>
                 <th>Price</th>
+                <th>User Name</th>
 
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
                     <th>Edit</th>
