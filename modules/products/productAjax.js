@@ -309,23 +309,6 @@ function deleteSelectedProducts() {
     });
 }
 
-// function deleteSelectedProducts() {
-
-//     if (selectproduct.length === 0) {
-//         alert("Please select product");
-//         return;
-//     }
-//     const xhttp = new XMLHttpRequest();
-
-//     xhttp.onload = function() {
-//         console.log(this.responseText);
-//         if(this.status === 200) {
-//             alert("Product deleted successfully");
-//             selectproduct = [];
-//             query();
-//         }
-//     };
-//     xhttp.open("POST", "delete.php", true);
-//     xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-//     xhttp.send("product_ids=" + selectproduct.join(","));
-// }
+function csv(){
+window.location.href = "csvex.php";
+}

@@ -35,10 +35,14 @@ requireLogin();
             </div>
         </div>
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
-        <div>
+        <div class="mb-3">
             <button type="button" class="btn btn-outline-danger" onclick="add()">Add Product</button>
         </div>
         <?php } ?>
+        <div class="mb-3">
+            <button type="button" class="btn btn-success" onclick="csv()">CSV Export</button>
+        </div>
+
 
         <table  class="table">
             <thead>
