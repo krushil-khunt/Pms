@@ -169,25 +169,59 @@ function updateproduct(id){
     }
 
     xhttp.open("POST","updatepro.php",true);
-
     xhttp.send(data);
 }
 
+// function deleteProduct(id){
+// const xhttp = new XMLHttpRequest();
+
+//     xhttp.onload = function()
+//     {
+//         document.body.innerHTML = this.responseText;
+//     }
+
+//     xhttp.open("POST","delete.php",true);
+//     xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+//     xhttp.send("id=" + id);
+
+// }
+
 function deleteProduct(id){
-const xhttp = new XMLHttpRequest();
 
-    xhttp.onload = function()
-    {
-        document.body.innerHTML = this.responseText;
-    }
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This product will be deleted!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete",
+        cancelButtonText: "Cancel"
+    }).then((result) => {
 
-    xhttp.open("POST","delete.php",true);
-    xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    xhttp.send("id=" + id);
+        if (result.isConfirmed) {
+            const xhttp = new XMLHttpRequest();
 
+            xhttp.onload = function() {
+                console.log(this.responseText);
+                if (this.status === 200) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Product deleted successfully.",
+                        icon: "success"
+                    });
+                    query();
+                }
+            };
+            xhttp.open("POST","delete.php",true);
+            xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xhttp.send("id=" + id);
+        }
+    });
 }
 
-function query(){
+
+
+
+function query(page=1){
 
     const q = document.getElementById("categorie_name").value;
     const price = document.getElementById("price").value;
@@ -201,10 +235,10 @@ function query(){
         }
     };
 
-    xhttp.open("GET", "display.php?q=" + encodeURIComponent(q) + "&price=" + price+"&order="+order,true);
+    xhttp.open("GET", "display.php?q=" + encodeURIComponent(q) + "&price=" + price+"&order="+order+"&page=" + page,true);
     xhttp.send();
 }
-query();
+query(1);
 
 const price=document.getElementById("price");
 
@@ -234,15 +268,45 @@ function productSelect(productId,checked) {
 }
 
 function deleteSelectedProducts() {
-    const xhttp = new XMLHttpRequest();
 
-    xhttp.onload = function() {
-        document.body.innerHTML = this.responseText;
-    };
-    
-    xhttp.open("POST", "delete.php", true);
-    xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    xhttp.send("product_ids=" + selectproduct.join(","));
+    if (selectproduct.length === 0) {
+        Swal.fire({
+            title: "No Product Selected",
+            text: "Please select at least one product.",
+            icon: "warning"
+        });
+        return;
+    }
+
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Selected products will be deleted!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete",
+        cancelButtonText: "Cancel"
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                console.log(this.responseText);
+                if (this.status === 200) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Products deleted successfully.",
+                        icon: "success"
+                    });
+                    selectproduct = [];
+                    query();
+                }
+            };
+
+            xhttp.open("POST", "delete.php", true);
+            xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xhttp.send("product_ids=" + selectproduct.join(","));
+        }
+    });
 }
 
 // function deleteSelectedProducts() {

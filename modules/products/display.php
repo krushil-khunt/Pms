@@ -8,6 +8,14 @@ $q = $_GET['q'] ?? '';
 $price=$_GET['price'] ?? '';
 
 $order=$_GET['order'] ?? '';
+
+$page = $_GET['page'] ?? 1;
+
+$limit = 5;
+
+$offset = ($page - 1) * $limit;
+
+
 // echo $order;
 
 // echo $price;
@@ -58,12 +66,12 @@ if($order=="A-Z"){
     $sql.= " ORDER BY product_meta.price DESC";
 
 }elseif($order=="low-high"){
-    $sql.= " ORDER BY products.product_name ASC";
+    $sql.= " ORDER BY product_meta.price ASC";
 }elseif($order=="new"){
     $sql.= " ORDER BY products.created_at DESC";
 }
 
-
+$sql .= " LIMIT $limit OFFSET $offset";
 $result=$con->query($sql);
 
 

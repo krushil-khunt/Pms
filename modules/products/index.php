@@ -61,16 +61,28 @@ session_start();
 
     <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
 
-    <button
-        type="button"
-        class="btn btn-danger"
-        onclick="deleteSelectedProducts()">
-        Delete Selected
-    </button>
+    <button type="button" class="btn btn-danger" onclick="deleteSelectedProducts()">Delete Selected</button>
 
     <?php } ?>
 
+    <ul class="pagination">
+
+        <li class="page-item">
+            <a class="page-link" href="#" onclick="query(1)">1</a>
+        </li>
+
+        <li class="page-item">
+            <a class="page-link" href="#" onclick="query(2)">2</a>
+        </li>
+
+        <li class="page-item">
+            <a class="page-link" href="#" onclick="query(3)">3</a>
+        </li>
+
+    </ul>
+
     <script src="productAjax.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

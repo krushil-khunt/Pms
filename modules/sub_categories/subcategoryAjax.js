@@ -69,7 +69,7 @@ function deleteSubCategory(id){
     xhttp.send("id=" + id);
 
 }
-function query(str){
+function query(str,page = 1){
 
     const xhttp = new XMLHttpRequest();
 
@@ -79,7 +79,7 @@ function query(str){
         }
     };
 
-    xhttp.open("GET", "display.php?q=" + encodeURIComponent(str), true);
+    xhttp.open("GET", "display.php?q=" + encodeURIComponent(str)+ "&page=" + page, true);
     xhttp.send();
 }
-query("");
+query("",1);

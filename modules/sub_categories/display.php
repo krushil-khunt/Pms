@@ -3,18 +3,27 @@ session_start();
 
 require_once "../../config/db.php";
 
-$q = $_GET['q'] ?? '';
+$q = $_GET['q'] ?? 1;
 // echo $q;
+$page = $_GET['page'] ?? 1;
+
+$limit = 5;
+
+$offset = ($page - 1) * $limit;
+
 
 if($q == ''){
     $sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name FROM categories
     INNER JOIN sub_categories
-    ON categories.id=sub_categories.categorie_id";
+    ON categories.id=sub_categories.categorie_id
+    LIMIT $limit OFFSET $offset";
 }else{
     $sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name FROM categories
     INNER JOIN sub_categories
     ON categories.id=sub_categories.categorie_id
-    WHERE sub_categories.sub_cate_name LIKE '%$q%'";
+    WHERE sub_categories.sub_cate_name LIKE '%$q%'
+    LIMIT $limit OFFSET $offset
+    ";
 }
 
 $result=$con->query($sql);
