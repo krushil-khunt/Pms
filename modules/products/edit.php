@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../../config/db.php";
 
 $id=$_POST['id'];
@@ -33,81 +34,85 @@ $result2=$con->query($sql2);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Qrolic/Pms/assets/css/style.css">
 </head>
 <body>
-    <div class="row mt-3">
-        <h1 class="col-6 offset-3">Update Product</h1>
-        <div class="col-3 offset-4">
-            <div class="mb-3">
-                
-                <select id="select_sub" class="form-select">
-                    <option value="">Select Sub Category</option>
-                    <?php while($row2=$result2->fetch_array()) {?>
-                        <option value="<?php echo $row2['id'] ?>"><?php echo $row2['sub_cate_name'] ?></option>
-                    <?php } ?>
-                </select>
-            </div>
+    <?php require_once '../../includes/sidebar.php'; ?>
+    <div class="main-content">
+        <div class="row mt-3">
+            <h1 class="col-6 offset-3">Update Product</h1>
+            <div class="col-3 offset-4">
+                <div class="mb-3">
+                    
+                    <select id="select_sub" class="form-select">
+                        <option value="">Select Sub Category</option>
+                        <?php while($row2=$result2->fetch_array()) {?>
+                            <option value="<?php echo $row2['id'] ?>"><?php echo $row2['sub_cate_name'] ?></option>
+                        <?php } ?>
+                    </select>
+                </div>
 
-            <div class="mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" name="name" id="name" class="form-control" value="<?php echo $row['product_name'] ;?>">
-            </div>
-            <div class="mb-3">
-                <label for="primaryimg" class="form-label">Primary Image</label>
-                <input class="form-control" type="file" id="primaryimg" name="img">
-                  <img src="../../assets/uploads/primary/<?php echo $row['primary_img']; ?>"width="100">
-            </div>
-            <div class="mb-3">
-                <label for="galleryimg" class="form-label">Gallery Images</label>
-                <input class="form-control" type="file" id="galleryimg" name="gallery_images[]" multiple> 
-            </div>
-            <div class="mb-3">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" name="price" id="price" class="form-control" value="<?php echo $row['price'] ;?>">
-            </div>
-            <div class="mb-3">
-                <label for="quantity" class="form-label">Quantity</label>
-                <input type="number" name="quantity" id="quantity" class="form-control" value="<?php echo $row['quantity'] ;?>">
-            </div>
-             <div class="mb-3">
-                <label for="color" class="form-label">Color</label>
-                <input type="text" name="color" id="color" class="form-control" value="<?php echo $row['color'] ;?>">
-            </div>
-            <div class="mb-3">
-                <label for="size" class="form-label">Size</label>
-                <input type="number" name="size" id="size" class="form-control" value="<?php echo $row['size'] ;?>">
-            </div>
-            <div class="mb-3">
-                <label for="hight" class="form-label">hight</label>
-                <input type="number" name="hight" id="hight" class="form-control" value="<?php echo $row['height'] ;?>">
-            </div>
-            <div class="mb-3">
-                <label for="width" class="form-label">width</label>
-                <input type="number" name="width" id="width" class="form-control" value="<?php echo $row['width'] ;?>">
-            </div>
-            <div class="mb-3">
-                <label for="weight" class="form-label">weight</label>
-                <input type="number" name="weight" id="weight" class="form-control" value="<?php echo $row['weight'] ;?>">
-            </div>
-            <div class="mb-3">
-                <select id="Status" class="form-select">
-                    <option value="active"<?php if($row['status'] == "active") echo "selected"; ?>>
-                        Active
-                    </option>
+                <div class="mb-3">
+                    <label for="name" class="form-label">Name</label>
+                    <input type="text" name="name" id="name" class="form-control" value="<?php echo $row['product_name'] ;?>">
+                </div>
+                <div class="mb-3">
+                    <label for="primaryimg" class="form-label">Primary Image</label>
+                    <input class="form-control" type="file" id="primaryimg" name="img">
+                    <img src="../../assets/uploads/primary/<?php echo $row['primary_img']; ?>"width="100">
+                </div>
+                <div class="mb-3">
+                    <label for="galleryimg" class="form-label">Gallery Images</label>
+                    <input class="form-control" type="file" id="galleryimg" name="gallery_images[]" multiple> 
+                </div>
+                <div class="mb-3">
+                    <label for="price" class="form-label">Price</label>
+                    <input type="number" name="price" id="price" class="form-control" value="<?php echo $row['price'] ;?>">
+                </div>
+                <div class="mb-3">
+                    <label for="quantity" class="form-label">Quantity</label>
+                    <input type="number" name="quantity" id="quantity" class="form-control" value="<?php echo $row['quantity'] ;?>">
+                </div>
+                <div class="mb-3">
+                    <label for="color" class="form-label">Color</label>
+                    <input type="text" name="color" id="color" class="form-control" value="<?php echo $row['color'] ;?>">
+                </div>
+                <div class="mb-3">
+                    <label for="size" class="form-label">Size</label>
+                    <input type="number" name="size" id="size" class="form-control" value="<?php echo $row['size'] ;?>">
+                </div>
+                <div class="mb-3">
+                    <label for="hight" class="form-label">hight</label>
+                    <input type="number" name="hight" id="hight" class="form-control" value="<?php echo $row['height'] ;?>">
+                </div>
+                <div class="mb-3">
+                    <label for="width" class="form-label">width</label>
+                    <input type="number" name="width" id="width" class="form-control" value="<?php echo $row['width'] ;?>">
+                </div>
+                <div class="mb-3">
+                    <label for="weight" class="form-label">weight</label>
+                    <input type="number" name="weight" id="weight" class="form-control" value="<?php echo $row['weight'] ;?>">
+                </div>
+                <div class="mb-3">
+                    <select id="Status" class="form-select">
+                        <option value="active"<?php if($row['status'] == "active") echo "selected"; ?>>
+                            Active
+                        </option>
 
-                    <option value="Inactive"
-                        <?php if($row['status'] == "Inactive") echo "selected"; ?>>
-                        Inactive
-                    </option>
+                        <option value="Inactive"
+                            <?php if($row['status'] == "Inactive") echo "selected"; ?>>
+                            Inactive
+                        </option>
 
-                </select>
-            </div>
-            <input type="hidden" id="id" value="<?php echo $_POST['id']; ?>">
-            <div>
-                <button type="button" class="btn btn-primary" onclick="updateproduct(<?php echo $id ?>)">Update</button>
-            </div>
-            <div>
-                <span id="demo"></span>
+                    </select>
+                </div>
+                <input type="hidden" id="id" value="<?php echo $_POST['id']; ?>">
+                <div>
+                    <button type="button" class="btn btn-primary" onclick="updateproduct(<?php echo $id ?>)">Update</button>
+                </div>
+                <div>
+                    <span id="demo"></span>
+                </div>
             </div>
         </div>
     </div>

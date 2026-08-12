@@ -49,9 +49,13 @@ if($q == ''){
 }
 
 if($price=="1"){
+
     $sql .= " AND ( product_meta.price BETWEEN 1000 AND 10000)";
+
 }elseif($price=="2"){
+
     $sql .= " AND ( product_meta.price BETWEEN 10000 AND 100000)";
+    
 }
 
 if($order=="A-Z"){
@@ -63,15 +67,20 @@ if($order=="A-Z"){
     $sql.= " ORDER BY products.product_name DESC";
 
 }elseif($order=="hig-low"){
+
     $sql.= " ORDER BY product_meta.price DESC";
 
 }elseif($order=="low-high"){
+
     $sql.= " ORDER BY product_meta.price ASC";
+
 }elseif($order=="new"){
+
     $sql.= " ORDER BY products.created_at DESC";
 }
 
 $sql .= " LIMIT $limit OFFSET $offset";
+
 $result=$con->query($sql);
 
 
