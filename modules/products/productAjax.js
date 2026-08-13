@@ -91,15 +91,10 @@ function addproduct(){
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function(){
-
         console.log(this.responseText);
-
-        document.getElementById("demo").innerHTML =
-            this.responseText;
-
+        document.getElementById("demo").innerHTML =this.responseText;
         // window.location.href = "create.php";
     };
-
     xhttp.open("POST", "add.php", true);
 
     xhttp.send(data);
@@ -121,7 +116,6 @@ function editProduct(id){
 function updateproduct(id){
 
     console.log(id);
-
 
     const subcategory = document.getElementById("select_sub").value;
     const name = document.getElementById("name").value;
@@ -217,8 +211,6 @@ function deleteProduct(id){
         }
     });
 }
-
-
 
 
 function query(page=1){

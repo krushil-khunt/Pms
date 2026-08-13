@@ -4,6 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once '../config/db.php';
+
 $email=filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 $pass= md5($_POST['password']);
 $role= $_POST['user'];
@@ -37,9 +38,6 @@ if($result->num_rows > 0){
         }else{
             echo "user";
         }
-        
-        
-
     }else{
         echo "Wrong Password";
     }
