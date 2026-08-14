@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../../config/db.php";
 
 
@@ -23,6 +24,8 @@ $height = $_POST['height'];
 $weight = $_POST['weight'];
 $quantity = $_POST['quantity'];
 $status = $_POST['status'];
+
+$primaryimage=null;
 
 $primaryimage = $_FILES['img']['name'];
 $primaryTmp = $_FILES['img']['tmp_name'];

@@ -60,7 +60,7 @@ while ($row = $result->fetch_array()) {
 
     echo "<img class='main-image'
             src='../../assets/uploads/primary/" . $row['primary_img'] . "'
-            alt='Product Image'>";
+            alt='Product Image' width='200'>";
 
     echo "<div class='card-body'>";
 
@@ -92,7 +92,7 @@ while ($row = $result->fetch_array()) {
     foreach ($galleryImages as $image) {
 
         echo "<img src='../../assets/uploads/gallery/" . trim($image) . "'
-                alt='Gallery Image'>";
+                alt='Gallery Image' width='200' >";
     }
 
     echo "</div>";

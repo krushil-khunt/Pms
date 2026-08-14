@@ -67,7 +67,16 @@ $result2=$con->query($sql2);
                 </div>
                 <div class="mb-3">
                     <label for="galleryimg" class="form-label">Gallery Images</label>
-                    <input class="form-control" type="file" id="galleryimg" name="gallery_images[]" multiple> 
+                    <input class="form-control" type="file" id="galleryimg" name="gallery_images[]" multiple>
+                    <?php 
+                    $galleryImages = explode(',', $row['gallery_img']);
+
+                    foreach ($galleryImages as $image) {
+
+                    echo "<img src='../../assets/uploads/gallery/" . trim($image) . "'
+                        alt='Gallery Image' width='100'> ";
+                    } 
+                    ?> 
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>

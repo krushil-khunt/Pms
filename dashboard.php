@@ -11,9 +11,16 @@ $sql="SELECT COUNT(*) FROM products WHERE status='active'";
 $sqlInactive="SELECT COUNT(*) FROM products WHERE status='Inactive'";
 $user="SELECT COUNT(*) FROM users";
 
+$userproduct="SELECT COUNT(*) FROM users
+                INNER JOIN products
+                ON products.user_id=users.id
+                WHERE users.id=".$_SESSION['id']."
+                GROUP BY products.user_id";
+
 $result=$con->query($sql);
 $resultInactive=$con->query($sqlInactive);
-$userdata=$con->query($user)
+$userdata=$con->query($user);
+$result_userproduct=$con->query($userproduct)
 ?>
 
 <!DOCTYPE html>
@@ -56,6 +63,12 @@ $userdata=$con->query($user)
                 <div class="card-header">User</div>
                     <div class="card-body">
                         <p class="card-text"><?php echo implode($row3 = $userdata->fetch_row()) . "<br>"; ?></p>
+                    </div>
+            </div>
+             <div class="card text-bg-light mb-3" style="max-width: 18rem; height: 81px;">
+                <div class="card-header">Admin Product</div>
+                    <div class="card-body">
+                        <p class="card-text"><?php echo implode($row4 = $result_userproduct->fetch_row()) . "<br>"; ?></p>
                     </div>
             </div>
 
