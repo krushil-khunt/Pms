@@ -304,3 +304,20 @@ function deleteSelectedProducts() {
 function csv(){
 window.location.href = "csvex.php";
 }
+
+function updateStatus(id, checked) {
+    let status;
+    if(checked){
+        status = "active";
+    }else{
+        status = "inactive";
+    }
+    
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function () {
+        console.log(this.responseText);
+    };
+    xhttp.open("POST", "update_status.php", true);
+    xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    xhttp.send("sid=" + id + "&status=" + status);
+}

@@ -8,6 +8,9 @@ requireAdmin();
 
 $id=$_POST['id'];
 
+// $statusid=$_POST['sid'];
+// $status = $_POST['status'];
+
 // echo $id;
 
 $subcategory = $_POST['select_sub'];

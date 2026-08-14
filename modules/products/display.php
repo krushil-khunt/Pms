@@ -99,7 +99,19 @@ while($row = $result->fetch_array()) {
 
     echo "<td>" . $row['height'] . "</td>";
     echo "<td>" . $row['width'] . "</td>";
-    echo "<td>" . $row['status'] . "</td>";
+    // echo "<td><input type='checkbox' id='checkbox_" . $row['id'] . "' name='ststus_checkbox[]' value='inactive' onchange='ststusSelect(" . $row['id'] . ", this.checked)'><br><input type='checkbox' id='checkbox_" . $row['id'] . "' name='ststus_checkbox[]' value='Active' onchange='ststusSelect(" . $row['id'] . ", this.checked)'>" . $row['status'] . "</td>";
+
+    echo '<td>
+        <div class="form-check form-switch">
+            <input 
+                class="form-check-input" 
+                type="checkbox"
+                onchange="updateStatus(' . $row['id'] . ', this.checked)"
+                ' . ($row['status'] == 'active' ? 'checked' : '') . '
+            >
+        </div>
+    </td>';
+    
     echo "<td>" . $row['price'] . "</td>";
     echo "<td>" . $row['name'] . "</td>";
     if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
