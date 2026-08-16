@@ -146,7 +146,7 @@ function deleteCategory(id){
     });
 }
 
-function query(){
+function query(page = 1){
 
     const q = document.getElementById("categorie_name").value;
     const order = document.getElementById("order").value;
@@ -159,16 +159,16 @@ function query(){
             document.getElementById("addcate").innerHTML=this.responseText;
         }
     };
-    xhttp.open("GET","display.php?q=" + q +"&order=" + order,true);
+    xhttp.open("GET","display.php?q=" + q +"&order=" + order+"&page=" + page,true);
     xhttp.send();
 }
 
-query();
+query(1);
 
 const order = document.getElementById("order");
 
 order.addEventListener("change", function(){
-    query();
+    query(1);
 });
 
 

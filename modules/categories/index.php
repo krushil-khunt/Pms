@@ -34,6 +34,27 @@
         <div>
             <span id="addcate"></span>
         </div>
+        <nav aria-label="Page navigation">
+    <ul class="pagination">
+
+        <li class="page-item">
+            <a class="page-link" href="#" onclick="query(1)">1</a>
+        </li>
+
+        <li class="page-item">
+            <a class="page-link" href="#" onclick="query(2)">2</a>
+        </li>
+
+        <li class="page-item">
+            <a class="page-link" href="#" onclick="query(3)">3</a>
+        </li>
+
+        <li class="page-item">
+            <a class="page-link" href="#" onclick="query(4)">4</a>
+        </li>
+
+    </ul>
+</nav>
     </div>
 
     <script src="categoryAjax.js"></script>
