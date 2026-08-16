@@ -5,26 +5,47 @@ require_once "../../config/db.php";
 
 $q = $_GET['q'] ?? 1;
 // echo $q;
+$order = $_GET['order'] ?? '';
+
 $page = $_GET['page'] ?? 1;
+
 
 $limit = 5;
 
 $offset = ($page - 1) * $limit;
 
+$sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name FROM categories
+    INNER JOIN sub_categories
+    ON categories.id=sub_categories.categorie_id
+    WHERE 1=1";
+
 
 if($q == ''){
-    $sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name FROM categories
-    INNER JOIN sub_categories
-    ON categories.id=sub_categories.categorie_id
-    LIMIT $limit OFFSET $offset";
+    $sql;
 }else{
-    $sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name FROM categories
-    INNER JOIN sub_categories
-    ON categories.id=sub_categories.categorie_id
-    WHERE sub_categories.sub_cate_name LIKE '%$q%'
-    LIMIT $limit OFFSET $offset
-    ";
+    $sql .= " AND (
+        sub_categories.sub_cate_name LIKE '%$q%'
+        OR categories.cate_name LIKE '%$q%'
+    )";
 }
+
+
+if($order=="A-Z"){
+
+    $sql .= " ORDER BY sub_categories.sub_cate_name ASC";
+
+}elseif($order=="Z-A"){
+
+    $sql .= " ORDER BY sub_categories.sub_cate_name DESC";
+
+}elseif($order=="new"){
+
+    $sql .= " ORDER BY sub_categories.id DESC";
+
+}
+
+
+$sql .= " LIMIT $limit OFFSET $offset";
 
 $result=$con->query($sql);
 

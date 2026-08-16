@@ -47,7 +47,7 @@ $result2=$con->query($sql2);
             <h1 class="col-6 offset-3">Update Product</h1>
             <div class="col-3 offset-4">
                 <div class="mb-3">
-                    
+                    <div id="message"></div>
                     <select id="select_sub" class="form-select">
                         <option value="">Select Sub Category</option>
                         <?php while($row2=$result2->fetch_array()) {?>

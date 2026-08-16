@@ -36,11 +36,17 @@ $sql = "SELECT products.id,products.product_name,products.primary_img,products.s
             ON products.user_id = users.id
         WHERE 1=1";
 
+if($q != '' || $price != '' || $order != 'new'){
+
+    $sql .= " AND products.status = 'active'";
+
+}
+
 if($q == ''){
     $sql;    
 }else{
 
-    $sql .= " AND (
+    $sql .= "AND (
         products.product_name LIKE '%$q%'
         OR categories.cate_name LIKE '%$q%'
         OR sub_categories.sub_cate_name LIKE '%$q%'

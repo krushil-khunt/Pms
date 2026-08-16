@@ -27,6 +27,7 @@ $row = $result->fetch_assoc();
             <h1 class="col-6 offset-3">Update categories</h1>
             <div class="col-6 offset-3">
                 <div class="mb-3">
+                    <div id="message"></div>
                     <input type="hidden" id="id" value="<?php echo $row['id']; ?>">
                     <label for="catname" class="form-label">Categorie Name</label>
                     <input type="text" name="catname" id="catname" class="form-control" value="<?php echo $row['cate_name']; ?>">

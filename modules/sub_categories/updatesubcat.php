@@ -10,7 +10,7 @@ $sub_catname=$_POST['sub_name'];
 $sql="update sub_categories set sub_cate_name='$sub_catname' where id='$sub_id'";
 
 if($con->query($sql)){
-    echo "Update Subcategories ";
+    echo "Update Subcategories";
 }else{
     echo "not Update SubCategorie".$con->error;
 }

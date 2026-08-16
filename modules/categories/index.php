@@ -19,6 +19,11 @@
         <div class="col-2">
             <div class="mb-3">
                 <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query(this.value)" >
+                <select id="order" class="form-select">
+                    <option value="new" selected>Newest First</option>
+                    <option value="A-Z">A-Z</option>
+                    <option value="Z-A">Z-A</option>
+                </select>
             </div>
         </div>
             <div>
@@ -32,6 +37,7 @@
     </div>
 
     <script src="categoryAjax.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 </body>
 </html>

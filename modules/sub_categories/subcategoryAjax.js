@@ -20,7 +20,35 @@ function addsubCategorie(){
     const xhttp=new XMLHttpRequest();
 
     xhttp.onload=function(){
-        document.getElementById("subdemo").innerHTML=this.responseText;
+        if(this.responseText.trim() === "Add Subcategories"){
+
+            document.getElementById("message").innerHTML = `
+                <div class="alert alert-primary" role="alert">
+                    Sub Category added successfully
+                </div>
+            `;
+
+            document.getElementById("message").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            setTimeout(function(){
+                window.location.href = "index.php";
+            }, 2000);
+
+        }else{
+
+            document.getElementById("message").innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                    ${this.responseText}
+                </div>
+            `;
+            document.getElementById("message").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
     }
     xhttp.open("POST","add.php",true);
     xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -49,7 +77,37 @@ function updateSubCategory(id){
     const xhttp = new XMLHttpRequest();
     xhttp.onload = function()
     {
-        document.getElementById("subdemo").innerHTML=this.responseText;
+        if(this.responseText.trim() === "Update Subcategories"){
+
+            document.getElementById("message").innerHTML = `
+                <div class="alert alert-primary" role="alert">
+                    Sub Category updated successfully
+                </div>
+            `;
+
+            document.getElementById("message").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            setTimeout(function(){
+                window.location.href = "index.php";
+            }, 2000);
+
+        }else{
+
+            document.getElementById("message").innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                    ${this.responseText}
+                </div>
+            `;
+
+            document.getElementById("message").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+        }
     }
 
     xhttp.open("POST","updatesubcat.php",true);
@@ -58,18 +116,39 @@ function updateSubCategory(id){
 }
 
 function deleteSubCategory(id){
-    // console.log("delet btn",id);
-    const xhttp = new XMLHttpRequest();
-    xhttp.onload = function()
-    {
-        document.getElementById("subdemo").innerHTML=this.responseText;
-    }
-    xhttp.open("POST","delete.php",true);
-    xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    xhttp.send("id=" + id);
 
+    Swal.fire({
+        title: "Are you sure?",
+        text: "This sub category will be deleted!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Delete",
+        cancelButtonText: "Cancel"
+    }).then((result) => {
+
+        if (result.isConfirmed) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function() {
+                if (this.status === 200) {
+                    Swal.fire({
+                        title: "Deleted!",
+                        text: "Sub Category deleted successfully.",
+                        icon: "success"
+                    });
+                    query("", 1);
+                }
+            };
+            xhttp.open("POST", "delete.php", true);
+            xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
+            xhttp.send("id=" + id);
+        }
+    });
 }
+
 function query(str,page = 1){
+
+    const q = document.getElementById("categorie_name").value;
+    const order = document.getElementById("order").value;
 
     const xhttp = new XMLHttpRequest();
 
@@ -79,7 +158,15 @@ function query(str,page = 1){
         }
     };
 
-    xhttp.open("GET", "display.php?q=" + encodeURIComponent(str)+ "&page=" + page, true);
+    xhttp.open("GET", "display.php?q=" + str+ "&order=" + order +"&page=" + page, true);
     xhttp.send();
 }
 query("",1);
+
+const order = document.getElementById("order");
+
+order.addEventListener("change", function(){
+
+    query("",1);
+
+});

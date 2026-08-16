@@ -31,6 +31,7 @@ $row=$result->fetch_assoc();
             <h1 class="col-6 offset-3">Edit Subcategories</h1>
             <div class="col-6 offset-3">
                 <div class="mb-3">
+                      <div id="message"></div>
                     <select id="seletsubcat" class="form-select">
 
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['cate_name'] ?> </option>

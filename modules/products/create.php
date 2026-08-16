@@ -33,62 +33,73 @@ $result=$con->query($sql);
 
         <div class="row mt-3">
             <h1 class="col-6 offset-3">Add Product</h1>
-            <div class="col-3 offset-4">
+            <div class="col-3 offset-4">   
                 <div class="mb-3">
-
+                    <div id="message"></div>
                     <select id="selectcat" class="form-select">
                         <option>Select categories</option>
                         <?php while($row = $result->fetch_array()) {?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['cate_name'] ?> </option>
                         <?php } ?> 
                     </select>
-
+                    <span id="categoriesError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <select id="selectsub" class="form-select">
                         <option value="">Select Sub Category</option>
                     </select>
+                    <span id="subcategoriesError" class="text-danger"></span>
                 </div>
 
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" name="name" id="name" class="form-control">
+                    <span id="nameError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="primaryimg" class="form-label">Primary Image</label>
                     <input class="form-control" type="file" id="primaryimg" name="img">
+                    <span id="primaryimgError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="galleryimg" class="form-label">Gallery Images</label>
                     <input class="form-control" type="file" id="galleryimg" name="gallery_images[]" multiple>
+                    <span id="galleryimgError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="price" class="form-label">Price</label>
                     <input type="number" name="price" id="price" class="form-control">
+                    <span id="priceError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="quantity" class="form-label">Quantity</label>
                     <input type="number" name="quantity" id="quantity" class="form-control">
+                    <span id="quantityError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="color" class="form-label">Color</label>
                     <input type="text" name="color" id="color" class="form-control">
+                    <span id="colorError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="size" class="form-label">Size</label>
                     <input type="number" name="size" id="size" class="form-control">
+                    <span id="sizeError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="hight" class="form-label">hight</label>
                     <input type="number" name="hight" id="hight" class="form-control">
+                    <span id="hightError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="width" class="form-label">width</label>
                     <input type="number" name="width" id="width" class="form-control">
+                    <span id="widthError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <label for="weight" class="form-label">weight</label>
                     <input type="number" name="weight" id="weight" class="form-control">
+                    <span id="weightError" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
                     <select id="Status" class="form-select">
@@ -96,13 +107,14 @@ $result=$con->query($sql);
                             <option value="active">active</option>
                             <option value="Inactive">Inactive</option>
                     </select>
+                    <span id="StatusError" class="text-danger"></span>
                 </div>
                 <div>
                     <button type="button" class="btn btn-primary" onclick="addproduct()">Add Product</button>
                 </div>
-                <div>
+                <!-- <div>
                     <span id="demo"></span>
-                </div>
+                </div> -->
             </div>
         </div>
    </div>

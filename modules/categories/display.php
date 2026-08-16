@@ -5,12 +5,30 @@ require_once "../../config/db.php";
 
 $q = $_GET['q'] ?? '';
 
-if($q == ''){
-    $sql="SELECT * FROM categories";
+$q = $_GET['q'] ?? '';
 
+$order = $_GET['order'] ?? '';
+
+$sql = "SELECT * FROM categories WHERE 1=1";
+
+if($q == ''){
+    $sql;
 }else{
-    
-    $sql = "SELECT * FROM categories WHERE cate_name LIKE '%$q%'";
+    $sql .= " AND cate_name LIKE '%$q%'";
+}
+
+if($order == "A-Z"){
+
+    $sql .= " ORDER BY cate_name ASC";
+
+}elseif($order == "Z-A"){
+
+    $sql .= " ORDER BY cate_name DESC";
+
+}elseif($order == "new"){
+
+    $sql .= " ORDER BY id DESC";
+
 }
 
 $result=$con->query($sql);

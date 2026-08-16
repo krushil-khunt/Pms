@@ -20,7 +20,7 @@ requireLogin();
             <div class="mb-3">
                 <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query()" >
                     <select id="price" class="form-select">
-                        <option>All</option>
+                        <option value="">All</option>
                         <option value="1">1000-10,000</option>
                         <option value="2">10,000-100,000</option>
                     </select>

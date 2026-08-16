@@ -112,19 +112,15 @@
             const xhttp = new XMLHttpRequest();
             xhttp.onload = function () {
 
-                if (this.responseText === "User register") {
-
+                if(this.responseText === "User register"){
                     document.getElementById("message").innerHTML = `
                         <div class="alert alert-primary" role="alert">
                             User registered successfully
                         </div>
                     `;
-
-                    name.value = "";
-                    email.value = "";
-                    password.value = "";
-                    user.value = "";
-
+                    setTimeout(function () {
+                        window.location.href = "login.php";
+                    }, 1000);
                 } else {
                     document.getElementById("message").innerHTML = `
                         <div class="alert alert-danger" role="alert">

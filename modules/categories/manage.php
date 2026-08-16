@@ -19,6 +19,7 @@ require_once __DIR__ . '/../../includes/sidebar.php';
                 <h1 class="col-6 offset-3">Add categories</h1>
                 <div class="col-6 offset-3">
                     <div class="mb-3">
+                        <div id="message"></div>
                         <label for="catname" class="form-label">Categorie Name</label>
                         <input type="text" name="catname" id="catname" class="form-control">
                     </div>

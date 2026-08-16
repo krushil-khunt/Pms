@@ -69,6 +69,132 @@ function addproduct(){
     const galleryimg =document.getElementById("galleryimg").files;
 
 
+    document.getElementById("categoriesError").innerHTML = "";
+    document.getElementById("subcategoriesError").innerHTML = "";
+    document.getElementById("nameError").innerHTML = "";
+    document.getElementById("primaryimgError").innerHTML = "";
+    document.getElementById("galleryimgError").innerHTML = "";
+    document.getElementById("priceError").innerHTML = "";
+    document.getElementById("quantityError").innerHTML = "";
+    document.getElementById("colorError").innerHTML = "";
+    document.getElementById("sizeError").innerHTML = "";
+    document.getElementById("hightError").innerHTML = "";
+    document.getElementById("widthError").innerHTML = "";
+    document.getElementById("weightError").innerHTML = "";
+    document.getElementById("StatusError").innerHTML = "";
+
+    let isValid = true;
+
+    if(category === "") {
+        document.getElementById("categoriesError").innerHTML =
+            "Please select category";
+        isValid = false;
+    }
+
+    if(subcategory === "") {
+        document.getElementById("subcategoriesError").innerHTML =
+            "Please select sub category";
+        isValid = false;
+    }
+
+    if(name.trim() === "") {
+        document.getElementById("nameError").innerHTML =
+            "Product name is required";
+        isValid = false;
+    }
+
+    if(!primaryimg) {
+        document.getElementById("primaryimgError").innerHTML =
+            "Primary image is required";
+        isValid = false;
+    }
+
+    if(galleryimg.length === 0) {
+        document.getElementById("galleryimgError").innerHTML =
+            "Gallery image is required";
+        isValid = false;
+    }
+
+    if(price === "") {
+        document.getElementById("priceError").innerHTML =
+            "Price is required";
+        isValid = false;
+    }else if(Number(price) <= 0) {
+        document.getElementById("priceError").innerHTML =
+            "Price must be greater than 0";
+        isValid = false;
+    }
+
+    if(quantity === "") {
+        document.getElementById("quantityError").innerHTML =
+            "Quantity is required";
+        isValid = false;
+    }else if(Number(quantity) < 0) {
+        document.getElementById("quantityError").innerHTML =
+            "Quantity cannot be negative";
+        isValid = false;
+    }
+
+    if(color.trim() === "") {
+        document.getElementById("colorError").innerHTML =
+            "Color is required";
+        isValid = false;
+    }
+
+    if(size === "") {
+        document.getElementById("sizeError").innerHTML =
+            "Size is required";
+        isValid = false;
+    }else if(Number(size) <= 0) {
+        document.getElementById("sizeError").innerHTML =
+            "Size must be greater than 0";
+        isValid = false;
+    }
+
+    if(height === "") {
+        document.getElementById("hightError").innerHTML =
+            "Height is required";
+        isValid = false;
+    }else if(Number(height) <= 0) {
+        document.getElementById("hightError").innerHTML =
+            "Height must be greater than 0";
+        isValid = false;
+    }
+
+    if(width === "") {
+        document.getElementById("widthError").innerHTML =
+            "Width is required";
+        isValid = false;
+    }else if(Number(width) <= 0) {
+        document.getElementById("widthError").innerHTML =
+            "Width must be greater than 0";
+        isValid = false;
+    }
+
+    if(weight === "") {
+        document.getElementById("weightError").innerHTML =
+            "Weight is required";
+        isValid = false;
+    }else if(Number(weight) <= 0) {
+        document.getElementById("weightError").innerHTML =
+            "Weight must be greater than 0";
+        isValid = false;
+    }
+
+
+    if(status === "") {
+        document.getElementById("StatusError").innerHTML =
+            "Please select status";
+        isValid = false;
+    }
+
+
+    if(!isValid) {
+        document.getElementById("demo").innerHTML =
+            "Please check the form details";
+        return;
+    }
+
     const data = new FormData();
 
     data.append("category", category);
@@ -91,9 +217,27 @@ function addproduct(){
     const xhttp = new XMLHttpRequest();
 
     xhttp.onload = function(){
-        console.log(this.responseText);
-        document.getElementById("demo").innerHTML =this.responseText;
-        // window.location.href = "create.php";
+        if(this.responseText.trim() === "Product added successfully"){
+            document.getElementById("message").innerHTML = `
+                <div class="alert alert-primary" role="alert">
+                    Product added successfully
+                </div>
+            `;
+            document.getElementById("message").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+            setTimeout(function(){
+                window.location.href = "index.php";
+            }, 500);
+        }else{
+            document.getElementById("message").innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                    ${this.responseText}
+                </div>
+            `;
+        }
+
     };
     xhttp.open("POST", "add.php", true);
 
@@ -159,9 +303,32 @@ function updateproduct(id){
 
     xhttp.onload = function()
     {
-        document.getElementById("demo").innerHTML = this.responseText;
-    }
+        if(this.responseText.trim() === "Product updated successfully") {
+            document.getElementById("message").innerHTML = `
+                <div class="alert alert-primary" role="alert">
+                    Product updated successfully
+                </div>
+            `;
+            document.getElementById("message").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
 
+            setTimeout(function () {
+                window.location.href = "index.php";
+            }, 2000);
+        }else{
+            document.getElementById("message").innerHTML = `
+                <div class="alert alert-danger" role="alert">
+                    ${this.responseText}
+                </div>
+            `;
+            document.getElementById("message").scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    }
     xhttp.open("POST","updatepro.php",true);
     xhttp.send(data);
 }

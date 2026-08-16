@@ -25,6 +25,7 @@ $result = $con->query($sql);
             <h1 class="col-6 offset-3">Add Sub categories</h1>
             <div class="col-6 offset-3">
                 <div class="mb-3">
+                    <div id="message"></div>
                     <select id="seletcat" class="form-select">
                         <option>Select</option>
                         <?php while($row = $result->fetch_array()) {?>

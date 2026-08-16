@@ -68,7 +68,7 @@ if($con->query($sql)){
     quantity='$quantity' WHERE product_id=$id";
 
     if($con->query($sql2)){
-        echo "data update";   
+        echo "Product updated successfully";   
     }else{
         echo "Product Meta Error: " . $con->error;
     }
