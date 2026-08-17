@@ -86,88 +86,77 @@ function addproduct(){
     let isValid = true;
 
     if(category === "") {
-        document.getElementById("categoriesError").innerHTML =
-            "Please select category";
+        document.getElementById("categoriesError").innerHTML = "Please select category";
         isValid = false;
     }
 
     if(subcategory === "") {
-        document.getElementById("subcategoriesError").innerHTML =
-            "Please select sub category";
+        document.getElementById("subcategoriesError").innerHTML = "Please select sub category";
         isValid = false;
     }
 
     if(name.trim() === "") {
-        document.getElementById("nameError").innerHTML =
-            "Product name is required";
+        document.getElementById("nameError").innerHTML = "Product name is required";
         isValid = false;
     }
 
     if(!primaryimg) {
-        document.getElementById("primaryimgError").innerHTML =
-            "Primary image is required";
+        document.getElementById("primaryimgError").innerHTML = "Primary image is required";
         isValid = false;
     }
 
     if(galleryimg.length === 0) {
-        document.getElementById("galleryimgError").innerHTML =
-            "Gallery image is required";
+        document.getElementById("galleryimgError").innerHTML = "Gallery image is required";
         isValid = false;
     }
 
     if(price === "") {
-        document.getElementById("priceError").innerHTML =
-            "Price is required";
+        document.getElementById("priceError").innerHTML = "Price is required";
         isValid = false;
     }else if(Number(price) <= 0) {
-        document.getElementById("priceError").innerHTML =
-            "Price must be greater than 0";
+        document.getElementById("priceError").innerHTML = "Price must be greater than 0";
         isValid = false;
     }
 
     if(quantity === "") {
-        document.getElementById("quantityError").innerHTML =
-            "Quantity is required";
+        document.getElementById("quantityError").innerHTML = "Quantity is required";
         isValid = false;
     }else if(Number(quantity) < 0) {
-        document.getElementById("quantityError").innerHTML =
-            "Quantity cannot be negative";
+        document.getElementById("quantityError").innerHTML = "Quantity cannot be negative";
         isValid = false;
     }
 
-    if(color.trim() === "") {
-        document.getElementById("colorError").innerHTML =
-            "Color is required";
+    const pattern = /^[A-Za-z\s]+$/;
+
+    if (color.trim() === "") {
+        document.getElementById("colorError").innerHTML = "Color is required";
+        isValid = false;
+    } else if (!pattern.test(color)) {
+        document.getElementById("colorError").innerHTML = "Only alphabets are allowed";
         isValid = false;
     }
 
     if(size === "") {
-        document.getElementById("sizeError").innerHTML =
-            "Size is required";
+        document.getElementById("sizeError").innerHTML = "Size is required";
         isValid = false;
     }else if(Number(size) <= 0) {
-        document.getElementById("sizeError").innerHTML =
-            "Size must be greater than 0";
+        document.getElementById("sizeError").innerHTML = "Size must be greater than 0";
         isValid = false;
     }
 
     if(height === "") {
-        document.getElementById("hightError").innerHTML =
-            "Height is required";
+        document.getElementById("hightError").innerHTML = "Height is required";
         isValid = false;
     }else if(Number(height) <= 0) {
-        document.getElementById("hightError").innerHTML =
-            "Height must be greater than 0";
+        document.getElementById("hightError").innerHTML = "Height must be greater than 0";
         isValid = false;
     }
 
     if(width === "") {
-        document.getElementById("widthError").innerHTML =
-            "Width is required";
+        document.getElementById("widthError").innerHTML = "Width is required";
         isValid = false;
     }else if(Number(width) <= 0) {
-        document.getElementById("widthError").innerHTML =
-            "Width must be greater than 0";
+        document.getElementById("widthError").innerHTML = "Width must be greater than 0";
         isValid = false;
     }
 
@@ -176,22 +165,17 @@ function addproduct(){
             "Weight is required";
         isValid = false;
     }else if(Number(weight) <= 0) {
-        document.getElementById("weightError").innerHTML =
-            "Weight must be greater than 0";
+        document.getElementById("weightError").innerHTML = "Weight must be greater than 0";
         isValid = false;
     }
-
 
     if(status === "") {
-        document.getElementById("StatusError").innerHTML =
-            "Please select status";
+        document.getElementById("StatusError").innerHTML = "Please select status";
         isValid = false;
     }
 
-
     if(!isValid) {
-        document.getElementById("demo").innerHTML =
-            "Please check the form details";
+        document.getElementById("demo").innerHTML = "Please check the form details";
         return;
     }
 
