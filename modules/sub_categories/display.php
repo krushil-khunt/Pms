@@ -87,16 +87,27 @@ if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
 
 echo "</tr>";
 
-while($row=$result->fetch_array()){
-    echo "<tr>";
-    echo "<td>".$row['id']."</td>";
-    echo "<td>".$row['sub_cate_name']."</td>";
-    echo "<td>".$row['cate_name']."</td>";
-    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
-        echo "<td><button onclick='editSubCategory(".$row['id'].")'>Edit</button></td>";
-        echo "<td><button onclick='deleteSubCategory(".$row['id'].")'>Delete</button></td>";
+if($result->num_rows == 0){
+
+    echo "<tr>
+            <td colspan='10' class='text-center'>
+                Data Not Found
+            </td>
+          </tr>";
+
+}else{
+
+    while($row=$result->fetch_array()){
+        echo "<tr>";
+        echo "<td>".$row['id']."</td>";
+        echo "<td>".$row['sub_cate_name']."</td>";
+        echo "<td>".$row['cate_name']."</td>";
+        if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+            echo "<td><button onclick='editSubCategory(".$row['id'].")'>Edit</button></td>";
+            echo "<td><button onclick='deleteSubCategory(".$row['id'].")'>Delete</button></td>";
+        }
+        echo "</tr>";
     }
-    echo "</tr>";
 }
 
 echo "</table>";

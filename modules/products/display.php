@@ -138,43 +138,53 @@ $sql .= " LIMIT $limit OFFSET $offset";
 
 $result=$con->query($sql);
 
+if($result->num_rows == 0){
 
-while($row = $result->fetch_array()) {
-    echo "<tr>";
-    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+    echo "<tr>
+            <td colspan='10' class='text-center'>
+                Data Not Found
+            </td>
+          </tr>";
+
+}else{
+
+    while($row = $result->fetch_array()) {
+        echo "<tr>";
+        if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+            echo "<td>
+                <input type='checkbox' id='checkbox_" . $row['id'] . "' name='product_checkbox[]' value='" . $row['id'] . "' onchange='productSelect(" . $row['id'] . ", this.checked)'>
+            </td>";
+        }
+        echo "<td>" . $row['product_name'] . "</td>";
         echo "<td>
-            <input type='checkbox' id='checkbox_" . $row['id'] . "' name='product_checkbox[]' value='" . $row['id'] . "' onchange='productSelect(" . $row['id'] . ", this.checked)'>
+            <a href='product_view.php?id=" . $row['id'] . "'>
+                <img src='../../assets/uploads/primary/" . $row['primary_img'] . "' width='100' height='100' alt='Product Image'>
+            </a>
         </td>";
+
+        echo "<td>" . $row['height'] . "</td>";
+        echo "<td>" . $row['width'] . "</td>";
+
+
+        
+        echo "<td>" . $row['price'] . "</td>";
+        echo "<td>" . $row['name'] . "</td>";
+        if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+                echo '<td>
+            <div class="form-check form-switch">
+                <input 
+                    class="form-check-input" 
+                    type="checkbox"
+                    onchange="updateStatus(' . $row['id'] . ', this.checked)"
+                    ' . ($row['status'] == 'active' ? 'checked' : '') . '
+                >
+            </div>
+        </td>';
+            echo "<td><button onclick='editProduct(".$row['id'].")'>Edit</button></td>";
+            echo "<td><button onclick='deleteProduct(".$row['id'].")'>Delet</button></td>";
+        }
+        echo "</tr>";
     }
-    echo "<td>" . $row['product_name'] . "</td>";
-    echo "<td>
-        <a href='product_view.php?id=" . $row['id'] . "'>
-            <img src='../../assets/uploads/primary/" . $row['primary_img'] . "' width='100' height='100' alt='Product Image'>
-        </a>
-      </td>";
-
-    echo "<td>" . $row['height'] . "</td>";
-    echo "<td>" . $row['width'] . "</td>";
-
-
-    
-    echo "<td>" . $row['price'] . "</td>";
-    echo "<td>" . $row['name'] . "</td>";
-    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
-            echo '<td>
-        <div class="form-check form-switch">
-            <input 
-                class="form-check-input" 
-                type="checkbox"
-                onchange="updateStatus(' . $row['id'] . ', this.checked)"
-                ' . ($row['status'] == 'active' ? 'checked' : '') . '
-            >
-        </div>
-    </td>';
-        echo "<td><button onclick='editProduct(".$row['id'].")'>Edit</button></td>";
-        echo "<td><button onclick='deleteProduct(".$row['id'].")'>Delet</button></td>";
-    }
-    echo "</tr>";
 }
 
 echo "<ul class='pagination'>";

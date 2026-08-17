@@ -71,16 +71,17 @@ requireLogin();
         <tbody id="addproduct">
                 <td><input type="checkbox" id="product" name="product"></td>
         </tbody>
-        </table>
-
-        <div id="pagination"></div>
-
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
 
         <button type="button" class="btn btn-danger" onclick="deleteSelectedProducts()">Delete Selected</button>
 
         <?php } ?>
 
+        </table>
+
+        <div id="pagination"></div>
+
+        
         <!-- <ul class="pagination">
 
             <li class="page-item">

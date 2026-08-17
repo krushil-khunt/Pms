@@ -69,6 +69,16 @@ echo "<table>
     }
     echo "</tr>";
 
+    if($result->num_rows == 0){
+
+    echo "<tr>
+            <td colspan='10' class='text-center'>
+                Data Not Found
+            </td>
+          </tr>";
+
+}else{
+
     while($row=$result->fetch_array()){
         echo "<tr>";
         echo "<td>" . $row['id'] . "</td>";
@@ -79,6 +89,7 @@ echo "<table>
         }
         echo "</tr>";
     }
+}
     echo "</table>";
 
     echo "<ul class='pagination'>";

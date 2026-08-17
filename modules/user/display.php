@@ -81,19 +81,29 @@ echo "<table>
     <th>Delete</th>
 </tr>";
 
-while($row=$result->fetch_assoc()){
-    echo "<tr>";
+if($result->num_rows == 0){
 
-    echo "<td>" . $row['id'] . "</td>";
-    echo "<td>" . $row['name'] . "</td>";
-    echo "<td>" . $row['email'] . "</td>";
-    echo "<td>" . $row['role'] . "</td>";
-    echo "<td><button onclick='edituser(".$row['id'].")'>Edit</button></td>";
-    echo "<td><button onclick='deleteuser(".$row['id'].")'>Delete</button></td>";
+    echo "<tr>
+            <td colspan='10' class='text-center'>
+                Data Not Found
+            </td>
+          </tr>";
 
-    echo "</tr>";
+}else{
+
+    while($row=$result->fetch_assoc()){
+        echo "<tr>";
+
+        echo "<td>" . $row['id'] . "</td>";
+        echo "<td>" . $row['name'] . "</td>";
+        echo "<td>" . $row['email'] . "</td>";
+        echo "<td>" . $row['role'] . "</td>";
+        echo "<td><button onclick='edituser(".$row['id'].")'>Edit</button></td>";
+        echo "<td><button onclick='deleteuser(".$row['id'].")'>Delete</button></td>";
+
+        echo "</tr>";
+    }
 }
-
 echo "</table>";
 
     echo "<ul class='pagination'>";
