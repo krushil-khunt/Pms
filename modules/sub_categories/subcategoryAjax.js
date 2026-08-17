@@ -57,18 +57,6 @@ function addsubCategorie(){
 
 const selectcat = document.getElementById("selectcat");
 
-if(selectcat){
-    selectcat.addEventListener("change", function(){
-        let categoryId = this.value;
-        const xhttp = new XMLHttpRequest();
-        xhttp.onload = function(){
-            document.getElementById("selectsub").innerHTML =this.responseText;
-        };
-        xhttp.open("POST", "edit_subcat.php", true);
-        xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-        xhttp.send("category=" + categoryId);
-    });
-}
 
 function editSubCategory(id){
 const xhttp = new XMLHttpRequest();
@@ -84,7 +72,7 @@ const xhttp = new XMLHttpRequest();
 }
 
 function updateSubCategory(id){
-    
+
     const sub_id=document.getElementById('subcatid').value;
     const category_id = document.getElementById("selectcat").value;
     const sub_name=document.getElementById('subcatname').value;
