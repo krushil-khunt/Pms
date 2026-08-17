@@ -18,7 +18,7 @@ requireLogin();
     <div class="main-content">
         <div class="col-2">
             <div class="mb-3">
-                <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query()" >
+                <input type="text" id="categorie_name" name="categorie_name" placeholder="Search product..."  class="form-control" oninput="query()" >
                     <select id="price" class="form-select">
                         <option value="">All</option>
                         <option value="1">1000-10,000</option>
@@ -69,11 +69,11 @@ requireLogin();
         </thead>
 
         <tbody id="addproduct">
-            
                 <td><input type="checkbox" id="product" name="product"></td>
-                
-            
         </tbody>
+        </table>
+
+        <div id="pagination"></div>
 
         <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
 
@@ -81,7 +81,7 @@ requireLogin();
 
         <?php } ?>
 
-        <ul class="pagination">
+        <!-- <ul class="pagination">
 
             <li class="page-item">
                 <a class="page-link" href="#" onclick="query(1)">1</a>
@@ -95,7 +95,7 @@ requireLogin();
                 <a class="page-link" href="#" onclick="query(3)">3</a>
             </li>
 
-        </ul>
+        </ul> -->
 </div>
 
     <script src="productAjax.js"></script>

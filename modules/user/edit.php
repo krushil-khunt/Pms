@@ -27,8 +27,9 @@ $row = $result->fetch_assoc();
         <div class="row mt-3">
             <h1 class="col-6 offset-3">Edit user</h1>
             <div class="col-6 offset-3">
+                <div id="message"></div>
                 <div class="mb-3">
-                    <div id="message"></div>
+
                     <input type="hidden" id="id" value="<?php echo $row['id']; ?>">
                     <label for="catname" class="form-label">User Name</label>
                     <input type="text" name="username" id="username" class="form-control" value="<?php echo $row['name']; ?>">

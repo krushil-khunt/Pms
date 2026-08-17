@@ -30,7 +30,7 @@ if($result->num_rows > 0){
         // header("Location: ../dashboard.php");
 
         if(isset($_POST['rem'])){
-            setcookie("email", $email, time() + (30 * 24 * 60 * 60), "/");
+            setcookie("name", $_SESSION['name'], time() + (30 * 24 * 60 * 60), "/");
         }
 
         if($_SESSION['role']==='admin'){

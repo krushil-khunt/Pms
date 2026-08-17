@@ -1,10 +1,9 @@
 <?php
-setcookie("email", "", time() - 3600, "/");
-
 session_start();
 session_unset();
 session_destroy();
 
+setcookie("name", "", time() - 3600, "/");
 
 header("Location: login.php");
 exit();

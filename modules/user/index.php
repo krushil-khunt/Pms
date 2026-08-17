@@ -16,24 +16,33 @@ requireAdmin();
 <body>
      <?php require_once '../../includes/sidebar.php'; ?>
         <div class="main-content">
-            <div class="col-2">
-                <div class="mb-3">
-                    <input type="text" id="username" class="form-control" placeholder="Search user..." oninput="query(1)">
-                    <select id="role" class="form-select">
-                        <option value="">All Roles</option>
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
-                    </select>
-                    <select id="order" class="form-select">
-                        <option value="new" selected>Newest First</option>
-                        <option value="A-Z">A-Z</option>
-                        <option value="Z-A">Z-A</option>
-                    </select>
-                </div>
-            </div>
-            <div>
-                <span id="user"></span>
-            </div>
+
+    <div class="col-2">
+        <div class="mb-3">
+
+            <input type="text" id="searchUsername" class="form-control" placeholder="Search user..." oninput="query(1)">
+
+            <select id="filterRole" class="form-select">
+                <option value="">All Roles</option>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </select>
+
+            <select id="order" class="form-select">
+                <option value="new" selected>Newest First</option>
+                <option value="A-Z">A-Z</option>
+                <option value="Z-A">Z-A</option>
+            </select>
+
+        </div>
+    </div>
+
+    <div>
+        <span id="user"></span>
+    </div>
+
+</div>
+
             <ul class="pagination">
 
             <li class="page-item">

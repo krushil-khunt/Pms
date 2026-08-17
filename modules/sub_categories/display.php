@@ -10,7 +10,8 @@ $q = $_GET['q'] ?? '';
 // echo $q;
 $order = $_GET['order'] ?? '';
 
-$page = $_GET['page'] ?? 1;
+// $page = $_GET['page'] ?? 1;
+$page = (int)($_GET['page'] ?? 1);
 
 
 $limit = 5;
@@ -32,6 +33,25 @@ if($q == ''){
     )";
 }
 
+$count="SELECT COUNT(*) AS total FROM categories
+        INNER JOIN sub_categories
+        ON categories.id=sub_categories.categorie_id";
+
+if($q == ''){
+    $count;
+}else{
+    $count .= " AND (
+        sub_categories.sub_cate_name LIKE '%$q%'
+        OR categories.cate_name LIKE '%$q%'
+    )";
+}
+
+$countresult = $con->query($count);
+
+$countrow = $countresult->fetch_assoc();
+
+$totalpage = ceil($countrow['total'] / $limit);
+
 
 if($order=="A-Z"){
 
@@ -49,6 +69,8 @@ if($order=="A-Z"){
 
 
 $sql .= " LIMIT $limit OFFSET $offset";
+
+
 
 $result=$con->query($sql);
 
@@ -78,4 +100,14 @@ while($row=$result->fetch_array()){
 }
 
 echo "</table>";
+
+echo "<ul class='pagination'>";
+
+for($i = 1; $i <= $totalpage; $i++){
+    echo "<li class='page-item'>
+            <a class='page-link' href='#' onclick='query($i)'>$i</a>
+          </li>";
+}
+
+echo "</ul>";
  ?>

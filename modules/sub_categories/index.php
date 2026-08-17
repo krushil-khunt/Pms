@@ -17,7 +17,7 @@ requireLogin();
     <div class="main-content">
         <div class="col-2">
             <div class="mb-3">
-                <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query(1)" >
+                <input type="text" id="categorie_name" name="categorie_name" placeholder="Search Subcategories..."  class="form-control" oninput="query(1)" >
                 <select id="order" class="form-select">
                     <option value="new" selected>Newest First</option>
                     <option value="A-Z">A-Z</option>
@@ -36,7 +36,7 @@ requireLogin();
             <span id="addsubcate"></span>
         </div>
 
-        <nav aria-label="Page navigation example">
+        <!-- <nav aria-label="Page navigation example">
             <ul class="pagination">
 
                 <li class="page-item">
@@ -55,7 +55,7 @@ requireLogin();
                 </li>
 
             </ul>
-        </nav>
+        </nav> -->
     </div>
 
     <script src="subcategoryAjax.js"></script>

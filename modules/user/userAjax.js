@@ -1,6 +1,7 @@
 function query(page = 1){
-    const username = document.getElementById("username").value;
-    const role = document.getElementById("role").value;
+    
+    const username = document.getElementById("searchUsername").value;
+    const role = document.getElementById("filterRole").value;
     const order = document.getElementById("order").value;
 
     const xhttp = new XMLHttpRequest();
@@ -14,27 +15,22 @@ function query(page = 1){
 }
 query(1);
 
-const role = document.getElementById("role");
-role.addEventListener("change", function(){
-
+const filterRole = document.getElementById("filterRole");
+filterRole.addEventListener("change", function(){
     query(1);
-
 });
 
 const order = document.getElementById("order");
 order.addEventListener("change", function(){
-
     query(1);
-
 });
 
 function edituser(id){
     // console.log("btn clil user",id);
-      const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function(){
-        if(this.readyState == 4 && this.status == 200){
-            document.getElementById("user").innerHTML=this.responseText;
-        }
+    const xhttp = new XMLHttpRequest();
+    xhttp.onload = function()
+    {
+        document.body.innerHTML = this.responseText;
     };
     xhttp.open("POST", "edit.php", true);
     xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -54,7 +50,9 @@ function updateuser(){
     // console.log(email);
     // console.log(role);
     const xhttp = new XMLHttpRequest();
+
     xhttp.onreadystatechange = function(){
+
         if(this.responseText.trim() === "Update User"){
             document.getElementById("user").innerHTML = `
                 <div class="alert alert-primary">
@@ -63,7 +61,7 @@ function updateuser(){
             `;
             setTimeout(function(){
                 window.location.href = "index.php";
-            }, 100);
+            }, 1000);
         }else{
             document.getElementById("user").innerHTML = `
                 <div class="alert alert-danger">

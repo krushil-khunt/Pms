@@ -28,6 +28,23 @@ if($username == ''){
     )";
 }
 
+$count="SELECT COUNT(*) AS total FROM users WHERE 1=1";
+
+if($username == ''){
+    $count;
+}else{
+    $count .= " AND (
+            name LIKE '%$username%'
+            OR email LIKE '%$username%'
+    )";
+}
+
+$countresult = $con->query($count);
+
+$countrow = $countresult->fetch_assoc();
+
+$totalpage = ceil($countrow['total'] / $limit);
+
 if($role == ''){
     $sql;
 }elseif($role == 'admin'){
@@ -79,4 +96,13 @@ while($row=$result->fetch_assoc()){
 
 echo "</table>";
 
+    echo "<ul class='pagination'>";
+
+for($i = 1; $i <= $totalpage; $i++){
+    echo "<li class='page-item'>
+            <a class='page-link' href='#' onclick='query($i)'>$i</a>
+          </li>";
+}
+
+echo "</ul>";
 ?>

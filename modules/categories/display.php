@@ -25,6 +25,20 @@ if($q == ''){
     $sql .= " AND cate_name LIKE '%$q%'";
 }
 
+$count="SELECT COUNT(*) AS total FROM categories WHERE 1=1";
+
+if($q == ''){
+    $count;
+}else{
+    $count .= " AND cate_name LIKE '%$q%'";
+}
+
+$countresult = $con->query($count);
+
+$countrow = $countresult->fetch_assoc();
+
+$totalpage = ceil($countrow['total'] / $limit);
+
 if($order == "A-Z"){
 
     $sql .= " ORDER BY cate_name ASC";
@@ -66,3 +80,13 @@ echo "<table>
         echo "</tr>";
     }
     echo "</table>";
+
+    echo "<ul class='pagination'>";
+
+for($i = 1; $i <= $totalpage; $i++){
+    echo "<li class='page-item'>
+            <a class='page-link' href='#' onclick='query($i)'>$i</a>
+          </li>";
+}
+
+echo "</ul>";

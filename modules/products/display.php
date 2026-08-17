@@ -47,7 +47,7 @@ if($q == ''){
     $sql;    
 }else{
 
-    $sql .= "AND (
+    $sql .= " AND (
         products.product_name LIKE '%$q%'
         OR categories.cate_name LIKE '%$q%'
         OR sub_categories.sub_cate_name LIKE '%$q%'
@@ -56,6 +56,53 @@ if($q == ''){
 
 }
 
+$count = "SELECT COUNT(*) AS total
+        FROM products
+        INNER JOIN product_meta
+            ON products.id = product_meta.product_id
+        INNER JOIN categories
+            ON products.categorie_id = categories.id
+        INNER JOIN sub_categories
+            ON products.sub_categorie_id = sub_categories.id
+        INNER JOIN users
+            ON products.user_id = users.id
+        WHERE 1=1";
+
+if($q != '' || $price != '' || $order != 'new'){
+
+    $count .= " AND products.status = 'active'";
+
+}
+
+if($q == ''){
+    $count;    
+}else{
+
+    $count .= " AND (
+        products.product_name LIKE '%$q%'
+        OR categories.cate_name LIKE '%$q%'
+        OR sub_categories.sub_cate_name LIKE '%$q%'
+        OR users.name LIKE '%$q%'
+    )";
+
+}
+
+if($price == "1"){
+
+    $count .= " AND product_meta.price BETWEEN 1000 AND 10000";
+
+}elseif($price == "2"){
+
+    $count .= " AND product_meta.price BETWEEN 10000 AND 100000";
+
+}
+
+$countresult = $con->query($count);
+
+$countrow = $countresult->fetch_assoc();
+
+$totalpage = ceil($countrow['total'] / $limit);
+        
 if($price=="1"){
 
     $sql .= " AND ( product_meta.price BETWEEN 1000 AND 10000)";
@@ -102,7 +149,7 @@ while($row = $result->fetch_array()) {
     echo "<td>" . $row['product_name'] . "</td>";
     echo "<td>
         <a href='product_view.php?id=" . $row['id'] . "'>
-            <img src='../../assets/uploads/primary/" . $row['primary_img'] . "' width='200' alt='Product Image'>
+            <img src='../../assets/uploads/primary/" . $row['primary_img'] . "' width='100' height='100' alt='Product Image'>
         </a>
       </td>";
 
@@ -129,4 +176,13 @@ while($row = $result->fetch_array()) {
     }
     echo "</tr>";
 }
+
+echo "<ul class='pagination'>";
+
+for($i = 1; $i <= $totalpage; $i++){
+    echo "<li class='page-item'>
+            <a class='page-link' href='#' onclick='query($i)'>$i</a>
+          </li>";
+}
+echo "</ul>";
  ?>
