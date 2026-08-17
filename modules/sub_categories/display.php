@@ -3,7 +3,10 @@ session_start();
 
 require_once "../../config/db.php";
 
-$q = $_GET['q'] ?? 1;
+require_once "../../includes/auth_check.php";
+requireLogin();
+
+$q = $_GET['q'] ?? '';
 // echo $q;
 $order = $_GET['order'] ?? '';
 

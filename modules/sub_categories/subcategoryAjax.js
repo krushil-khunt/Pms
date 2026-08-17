@@ -55,6 +55,21 @@ function addsubCategorie(){
     xhttp.send("catval="+catval.value+"&subname="+subname.value);
 }
 
+const selectcat = document.getElementById("selectcat");
+
+if(selectcat){
+    selectcat.addEventListener("change", function(){
+        let categoryId = this.value;
+        const xhttp = new XMLHttpRequest();
+        xhttp.onload = function(){
+            document.getElementById("selectsub").innerHTML =this.responseText;
+        };
+        xhttp.open("POST", "edit_subcat.php", true);
+        xhttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+        xhttp.send("category=" + categoryId);
+    });
+}
+
 function editSubCategory(id){
 const xhttp = new XMLHttpRequest();
 
@@ -69,7 +84,9 @@ const xhttp = new XMLHttpRequest();
 }
 
 function updateSubCategory(id){
+    
     const sub_id=document.getElementById('subcatid').value;
+    const category_id = document.getElementById("selectcat").value;
     const sub_name=document.getElementById('subcatname').value;
 
     console.log(sub_id);
@@ -112,7 +129,7 @@ function updateSubCategory(id){
 
     xhttp.open("POST","updatesubcat.php",true);
     xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-    xhttp.send("sub_id="+sub_id+"&sub_name="+sub_name);
+    xhttp.send("sub_id="+sub_id+"&category_id=" + category_id +"&sub_name="+sub_name);
 }
 
 function deleteSubCategory(id){
@@ -145,7 +162,7 @@ function deleteSubCategory(id){
     });
 }
 
-function query(str,page = 1){
+function query(page = 1){
 
     const q = document.getElementById("categorie_name").value;
     const order = document.getElementById("order").value;
@@ -158,15 +175,15 @@ function query(str,page = 1){
         }
     };
 
-    xhttp.open("GET", "display.php?q=" + str+ "&order=" + order +"&page=" + page, true);
+    xhttp.open("GET", "display.php?q=" + q+ "&order=" + order +"&page=" + page, true);
     xhttp.send();
 }
-query("",1);
+query(1);
 
 const order = document.getElementById("order");
 
 order.addEventListener("change", function(){
 
-    query("",1);
+    query(1);
 
 });

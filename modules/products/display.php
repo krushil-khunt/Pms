@@ -2,7 +2,8 @@
 session_start();
 
 require_once "../../config/db.php";
-
+require_once "../../includes/auth_check.php";
+requireLogin();
 
 $q = $_GET['q'] ?? '';
 
@@ -92,10 +93,12 @@ $result=$con->query($sql);
 
 
 while($row = $result->fetch_array()) {
-  echo "<tr>";
-    echo "<td>
-        <input type='checkbox' id='checkbox_" . $row['id'] . "' name='product_checkbox[]' value='" . $row['id'] . "' onchange='productSelect(" . $row['id'] . ", this.checked)'>
-    </td>";
+    echo "<tr>";
+    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+        echo "<td>
+            <input type='checkbox' id='checkbox_" . $row['id'] . "' name='product_checkbox[]' value='" . $row['id'] . "' onchange='productSelect(" . $row['id'] . ", this.checked)'>
+        </td>";
+    }
     echo "<td>" . $row['product_name'] . "</td>";
     echo "<td>
         <a href='product_view.php?id=" . $row['id'] . "'>
@@ -105,9 +108,13 @@ while($row = $result->fetch_array()) {
 
     echo "<td>" . $row['height'] . "</td>";
     echo "<td>" . $row['width'] . "</td>";
-    // echo "<td><input type='checkbox' id='checkbox_" . $row['id'] . "' name='ststus_checkbox[]' value='inactive' onchange='ststusSelect(" . $row['id'] . ", this.checked)'><br><input type='checkbox' id='checkbox_" . $row['id'] . "' name='ststus_checkbox[]' value='Active' onchange='ststusSelect(" . $row['id'] . ", this.checked)'>" . $row['status'] . "</td>";
 
-    echo '<td>
+
+    
+    echo "<td>" . $row['price'] . "</td>";
+    echo "<td>" . $row['name'] . "</td>";
+    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+            echo '<td>
         <div class="form-check form-switch">
             <input 
                 class="form-check-input" 
@@ -117,10 +124,6 @@ while($row = $result->fetch_array()) {
             >
         </div>
     </td>';
-    
-    echo "<td>" . $row['price'] . "</td>";
-    echo "<td>" . $row['name'] . "</td>";
-    if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
         echo "<td><button onclick='editProduct(".$row['id'].")'>Edit</button></td>";
         echo "<td><button onclick='deleteProduct(".$row['id'].")'>Delet</button></td>";
     }

@@ -2,12 +2,14 @@
 require_once "../../config/db.php";
 
 $sub_id=$_POST['sub_id'];
+$category_id = $_POST['category_id'];
 $sub_catname=$_POST['sub_name'];
 
 // echo $sub_id."<br>";
 // echo $sub_catname."<br>";
 
-$sql="update sub_categories set sub_cate_name='$sub_catname' where id='$sub_id'";
+$sql="update sub_categories set sub_cate_name='$sub_catname',categorie_id = '$category_id'
+        where id='$sub_id'";
 
 if($con->query($sql)){
     echo "Update Subcategories";

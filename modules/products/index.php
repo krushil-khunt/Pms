@@ -38,30 +38,33 @@ requireLogin();
         <div class="mb-3">
             <button type="button" class="btn btn-outline-danger" onclick="add()">Add Product</button>
         </div>
-        <?php } ?>
         <div class="mb-3">
             <button type="button" class="btn btn-success" onclick="csv()">CSV Export</button>
         </div>
+        <?php } ?>
+        
         
 
 
         <table  class="table">
             <thead>
             <tr>
-                <th>Select</th>
+                <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
+                    <th>Select</th>
+                <?php } ?>
                 <th>Product Name</th>
                 <th>Primary Image</th>
                 <th>Height</th>
                 <th>Width</th>
-                <th>Status</th>
+                
                 <th>Price</th>
                 <th>User Name</th>
 
                 <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
+                    <th>Status</th>
                     <th>Edit</th>
                     <th>Delete</th>
                 <?php } ?>
-
             </tr>
         </thead>
 

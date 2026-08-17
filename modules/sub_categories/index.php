@@ -1,5 +1,7 @@
 <?php
 session_start();
+require_once "../../includes/auth_check.php";
+requireLogin();
 ?>
 
 <!DOCTYPE html>
@@ -13,10 +15,9 @@ session_start();
 <body>
      <?php require_once '../../includes/sidebar.php'; ?>
     <div class="main-content">
-        <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
         <div class="col-2">
             <div class="mb-3">
-                <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query(this.value,1)" >
+                <input type="text" id="categorie_name" name="categorie_name" class="form-control" oninput="query(1)" >
                 <select id="order" class="form-select">
                     <option value="new" selected>Newest First</option>
                     <option value="A-Z">A-Z</option>
@@ -24,6 +25,7 @@ session_start();
                 </select>
             </div>
         </div>
+        <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
             <div>
                 <button type="button" class="btn btn-outline-secondary" onclick="addsub()">Add Sub Categorie</button>
             </div>

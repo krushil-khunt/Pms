@@ -5,14 +5,20 @@ require_once "../../config/db.php";
 $subid=$_POST['id'];
 // echo $subid;
 
-$sql="SELECT sub_categories.id,sub_categories.sub_cate_name,categories.cate_name FROM categories
+$sql="SELECT sub_categories.id,sub_categories.sub_cate_name,sub_categories.categorie_id,
+categories.cate_name FROM categories
 INNER JOIN sub_categories
 ON categories.id=sub_categories.categorie_id
 WHERE sub_categories.id=$subid";
 
-$result=$con->query($sql);
+$result = $con->query($sql);
 
-$row=$result->fetch_assoc();
+$row = $result->fetch_assoc();
+
+$categorySql = "SELECT * FROM categories";
+
+$catresult = $con->query($categorySql);
+
 
 ?>
 <!DOCTYPE html>
@@ -31,12 +37,20 @@ $row=$result->fetch_assoc();
             <h1 class="col-6 offset-3">Edit Subcategories</h1>
             <div class="col-6 offset-3">
                 <div class="mb-3">
-                      <div id="message"></div>
-                    <select id="seletsubcat" class="form-select">
+                    <div id="message"></div>
+                    <select id="selectcat" class="form-select">
+                        <option value="">Select categories</option>
+                        <?php while($row1 = $catresult->fetch_array()) { ?>
+                        <option value="<?php echo $row1['id']; ?>"
+                            <?php if($row1['id'] == $row['categorie_id']){
+                                    echo "selected";
+                                }
+                            ?>>
+                            <?php echo $row1['cate_name']; ?>
+                        </option>
+                    <?php } ?>
 
-                            <option value="<?php echo $row['id'] ?>"><?php echo $row['cate_name'] ?> </option>
-
-                    </select>
+                </select>
                 </div>
                 <input type="hidden" name="subcatid" id="subcatid" class="form-control" value="<?php echo $row['id']; ?>">
 

@@ -26,8 +26,8 @@ $result = $con->query($sql);
             <div class="col-6 offset-3">
                 <div class="mb-3">
                     <div id="message"></div>
-                    <select id="seletcat" class="form-select">
-                        <option>Select</option>
+                      <select id="selectcat" class="form-select">
+                        <option>Select categories</option>
                         <?php while($row = $result->fetch_array()) {?>
                             <option value="<?php echo $row['id'] ?>"><?php echo $row['cate_name'] ?> </option>
                         <?php } ?> 
