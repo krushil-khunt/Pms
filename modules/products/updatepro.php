@@ -25,38 +25,64 @@ $weight = $_POST['weight'];
 $quantity = $_POST['quantity'];
 $status = $_POST['status'];
 
-$primaryimage=null;
+$oldSql="SELECT primary_img FROM products WHERE id='$id'";
 
-$primaryimage = $_FILES['img']['name'];
-$primaryTmp = $_FILES['img']['tmp_name'];
+$oldResult=$con->query($oldSql);
 
-$primaryPath = __DIR__ . "/../../assets/uploads/primary/" . $primaryimage;
+$oldRow=$oldResult->fetch_assoc();
 
-if(!move_uploaded_file($primaryTmp, $primaryPath)){
+$primaryimage=$oldRow['primary_img'];
 
-    die("Primary image upload failed");
+if(isset($_FILES['img']) && $_FILES['img']['error'] == 0){
 
+    $primaryimage=$_FILES['img']['name'];
+
+    $primaryTmp=$_FILES['img']['tmp_name'];
+
+    $primaryPath=__DIR__ . "/../../assets/uploads/primary/" . $primaryimage;
+
+    if(!move_uploaded_file($primaryTmp,$primaryPath)){
+
+        die("Primary image upload failed");
+
+    }
 }
 
-$galleryNames = [];
+$gallerySql = "SELECT gallery_img FROM product_meta WHERE product_id='$id'";
+$galleryResult = $con->query($gallerySql);
+$galleryRow = $galleryResult->fetch_assoc();
 
-if(isset($_FILES['gallery_images'])){
+$oldGalleryImages = $galleryRow['gallery_img'];
 
-    $galleryImages =$_FILES['gallery_images']['name'];
-    $galleryTmp =$_FILES['gallery_images']['tmp_name'];
+$imgnames = $oldGalleryImages;
+
+if(isset($_FILES['gallery_images']) && !empty($_FILES['gallery_images']['name'][0])){
+
+    $galleryImages = $_FILES['gallery_images']['name'];
+    $galleryTmp = $_FILES['gallery_images']['tmp_name'];
+
+    $galleryNames = [];
 
     foreach($galleryImages as $key => $value){
+
         $tmpName = $galleryTmp[$key];
+
         $galleryPath = __DIR__ . "/../../assets/uploads/gallery/" . $value;
 
         if(move_uploaded_file($tmpName, $galleryPath)){
+
             $galleryNames[] = $value;
+
         }else{
+
             die("Gallery image upload failed: " . $value);
+
         }
     }
+
+    $imgnames = implode(",", $galleryNames);
 }
-$imgnames = implode(",", $galleryNames);
+
 
 $sql="UPDATE  products SET product_name='$name', primary_img='$primaryimage',
 sub_categorie_id='$subcategory',status='$status' WHERE id=$id";

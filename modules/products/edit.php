@@ -8,18 +8,18 @@ requireAdmin();
 
 $id=$_POST['id'];
 
-$sql="SELECT categories.id,categories.cate_name,sub_categories.id,categories.cate_name,
+$sql="SELECT categories.id AS category_id,categories.cate_name,sub_categories.id AS subcategory_id,
     sub_categories.sub_cate_name,products.product_name,products.primary_img,products.status,
-    product_meta.gallery_img,product_meta.price,product_meta.quantity,product_meta.color,
-    product_meta.size,product_meta.height,product_meta.width,product_meta.weight,products.id
+    product_meta.gallery_img,product_meta.price,product_meta.quantity,product_meta.color,product_meta.size,
+    product_meta.height,product_meta.width,product_meta.weight,products.id AS product_id
     FROM products
     INNER JOIN product_meta
-    ON products.id=product_meta.product_id
+    ON products.id = product_meta.product_id
     INNER JOIN categories
-    ON products.categorie_id=categories.id
+    ON products.categorie_id = categories.id
     INNER JOIN sub_categories
-    ON categories.id=sub_categories.categorie_id
-    WHERE products.id=$id";
+    ON products.sub_categorie_id = sub_categories.id
+    WHERE products.id = $id";
 
 $result=$con->query($sql);
 $row = $result->fetch_array();
@@ -48,14 +48,21 @@ $result2=$con->query($sql2);
             <div class="col-3 offset-4">
                 <div class="mb-3">
                     <div id="message"></div>
+
                     <select id="select_sub" class="form-select">
                         <option value="">Select Sub Category</option>
-                        <?php while($row2=$result2->fetch_array()) {?>
-                            <option value="<?php echo $row2['id'] ?>"><?php echo $row2['sub_cate_name'] ?></option>
+                        <?php while($row2 = $result2->fetch_array()) { ?>
+                            <option value="<?php echo $row2['id']; ?>"
+                                <?php 
+                                if($row2['id'] == $row['subcategory_id']) {
+                                    echo "selected";
+                                }
+                                ?>>
+                                <?php echo $row2['sub_cate_name']; ?>
+                            </option>
                         <?php } ?>
                     </select>
                 </div>
-
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" name="name" id="name" class="form-control" value="<?php echo $row['product_name'] ;?>">
